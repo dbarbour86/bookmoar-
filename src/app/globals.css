@@ -1,26 +1,102 @@
 @import "tailwindcss";
 
+@theme {
+  --color-brand-bg: #050505;
+  --color-card-bg: #08080A;
+  --color-elevated-bg: #0D0D10;
+  --color-primary-red: #FF2538;
+  --color-dark-red: #6D111B;
+  --color-white-text: #F5F5F5;
+  --color-muted-text: #8D8D94;
+  --color-border-color: rgba(255, 255, 255, 0.05);
+
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui;
+  --font-display: var(--font-bebas), sans-serif;
+  --font-brush: var(--font-brush), cursive;
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --background: #050505;
+  --foreground: #F5F5F5;
 }
 
 body {
-  background: var(--background);
+  background-color: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
+}
+
+/* Custom Grids and Dot Backgrounds */
+.bg-grid-pattern {
+  background-size: 40px 40px;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+}
+
+.bg-dot-pattern {
+  background-size: 20px 20px;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #050505;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #252528;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #FF2538;
+}
+
+/* Custom animations and glow utility */
+@keyframes pulseGlow {
+  0%, 100% {
+    opacity: 0.2;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.35;
+    transform: scale(1.05);
+  }
+}
+
+.glow-red {
+  box-shadow: 0 0 40px -10px rgba(255, 37, 56, 0.2);
+}
+
+.glow-red-strong {
+  box-shadow: 0 0 50px -5px rgba(255, 37, 56, 0.35);
+}
+
+.glow-bg {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(100px);
+  background: radial-gradient(circle, rgba(255, 37, 56, 0.12) 0%, rgba(109, 17, 27, 0.04) 50%, transparent 100%);
+  pointer-events: none;
+}
+
+/* Custom Text Stroke Utility */
+.text-stroke-red {
+  -webkit-text-stroke: 1.5px #FF2538;
+}
+
+.text-stroke-white {
+  -webkit-text-stroke: 1.5px #F5F5F5;
+}
+
+/* Button focus outline style */
+.focus-ring-red:focus-visible {
+  outline: 2px solid #FF2538;
+  outline-offset: 2px;
 }
