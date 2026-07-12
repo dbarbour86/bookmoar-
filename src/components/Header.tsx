@@ -21,10 +21,10 @@ export default function Header() {
   }, []);
 
   const navItems = [
-    { name: "Services", href: "#services" },
-    { name: "How It Works", href: "#how-it-works" },
-    { name: "Results", href: "#results" },
-    { name: "About", href: "#about" },
+    { name: "Services", href: "/#services" },
+    { name: "How It Works", href: "/#how-it-works" },
+    { name: "Results", href: "/#results" },
+    { name: "About", href: "/#about" },
   ];
 
   return (
@@ -38,7 +38,7 @@ export default function Header() {
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
           {/* Logo */}
-          <a href="#" className="flex items-center gap-2 group focus:outline-none">
+          <a href="/" className="flex items-center gap-2 group focus:outline-none">
             <div className="w-9 h-9 rounded-full bg-primary-red flex items-center justify-center transition-transform group-hover:scale-105 duration-200">
               <Calendar className="w-5 h-5 text-white-text" />
             </div>
