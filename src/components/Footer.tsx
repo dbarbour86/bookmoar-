@@ -46,10 +46,10 @@ export default function Footer() {
             </h4>
             <ul className="flex flex-col gap-3">
               {[
-                { name: "Services", href: "#services" },
-                { name: "How It Works", href: "#how-it-works" },
-                { name: "Results", href: "#results" },
-                { name: "About", href: "#about" },
+                { name: "Services", href: "/#services" },
+                { name: "How It Works", href: "/#how-it-works" },
+                { name: "Results", href: "/#results" },
+                { name: "About", href: "/#about" },
               ].map((link, idx) => (
                 <li key={idx}>
                   <a
@@ -77,7 +77,7 @@ export default function Footer() {
               ].map((service, idx) => (
                 <li key={idx}>
                   <a
-                    href="#services"
+                    href="/#services"
                     className="text-sm text-muted-text hover:text-white-text transition-colors duration-200"
                   >
                     {service}
