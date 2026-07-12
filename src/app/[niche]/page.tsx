@@ -38,7 +38,36 @@ export default async function Page({ params }: Props) {
     notFound();
   }
 
-  return <NichePageClient nicheData={nicheData} />;
+  return (
+    <>
+      {/* Product Onboarding Structured Data (JSON-LD) */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Product",
+            "name": `Book Moar ${nicheData.name} Lead Booking System`,
+            "image": `https://www.bookmoar.com${nicheData.image}`,
+            "description": nicheData.subheadline,
+            "offers": {
+              "@type": "Offer",
+              "price": nicheData.price.replace(/[^0-9]/g, ""), // extract digits e.g. 299
+              "priceCurrency": "USD",
+              "url": `https://www.bookmoar.com/${niche}`,
+              "priceValidUntil": "2027-12-31",
+              "availability": "https://schema.org/InStock"
+            },
+            "brand": {
+              "@type": "Brand",
+              "name": "Book Moar"
+            }
+          })
+        }}
+      />
+      <NichePageClient nicheData={nicheData} />
+    </>
+  );
 }
 
 // Prerender niches during build time for maximum page loading speed

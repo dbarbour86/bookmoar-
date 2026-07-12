@@ -10,6 +10,46 @@ import Footer from "@/components/Footer";
 export default function Home() {
   return (
     <>
+      {/* Structured Search Schema (JSON-LD) */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "ProfessionalService",
+            "name": "Book Moar",
+            "url": "https://www.bookmoar.com",
+            "logo": "https://www.bookmoar.com/icon",
+            "image": "https://www.bookmoar.com/icon",
+            "description": "Premium website systems, Google Review request automation, local SEO, and missed-call text back setups built to help local service businesses generate more bookings on autopilot.",
+            "telephone": "+1-919-351-9505",
+            "email": "hello@bookmoar.com",
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Raleigh",
+              "addressRegion": "NC",
+              "addressCountry": "US"
+            },
+            "geo": {
+              "@type": "GeoCoordinates",
+              "latitude": "35.7796",
+              "longitude": "-78.6382"
+            },
+            "areaServed": [
+              {
+                "@type": "State",
+                "name": "North Carolina"
+              },
+              {
+                "@type": "Country",
+                "name": "United States"
+              }
+            ],
+            "priceRange": "$$"
+          })
+        }}
+      />
+
       {/* Sticky Navigation Header */}
       <Header />
 

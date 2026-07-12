@@ -25,6 +25,7 @@ const permanentMarker = Permanent_Marker({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://www.bookmoar.com"),
   title: "Book Moar | More Bookings. Less Guesswork.",
   description: "Premium websites, local SEO, Google reviews, and smart automations built to help local service businesses book more customers on autopilot.",
   openGraph: {
