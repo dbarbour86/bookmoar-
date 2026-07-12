@@ -130,8 +130,8 @@ export default function Footer() {
           <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-6 text-xs text-muted-text text-center sm:text-left">
             <span>© {currentYear} Book Moar. All rights reserved.</span>
             <div className="flex gap-4">
-              <a href="#privacy" className="hover:text-white-text transition-colors">Privacy Policy</a>
-              <a href="#terms" className="hover:text-white-text transition-colors">Terms of Service</a>
+              <a href="/privacy" className="hover:text-white-text transition-colors">Privacy Policy</a>
+              <a href="/terms" className="hover:text-white-text transition-colors">Terms of Service</a>
               <a href="#login" className="hover:text-white-text transition-colors">Client Login</a>
             </div>
           </div>
