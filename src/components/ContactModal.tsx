@@ -11,7 +11,7 @@ interface ContactModalProps {
 export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
   // Configurable Cal.com Link - pointing to your user profile
   // Add ?theme=dark to keep styling cohesive
-  const CAL_LINK = "https://cal.com/dbarbour86/30min?theme=dark";
+  const CAL_LINK = "https://cal.com/BookMoar?theme=dark";
 
   return (
     <AnimatePresence>
