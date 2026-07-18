@@ -75,24 +75,32 @@ export default function Hero() {
             </motion.p>
 
             {/* CTA Buttons */}
-            <motion.div
-              variants={itemVariants}
-              className="w-full sm:w-auto flex flex-col sm:flex-row gap-4 mt-8"
-            >
-              <a
-                href="#book-call"
-                className="group px-8 py-4 rounded-xl bg-primary-red hover:bg-[#e01c2e] text-white-text text-base font-bold uppercase tracking-wider flex items-center justify-center gap-3 transition-all duration-300 hover:shadow-[0_0_25px_rgba(255,37,56,0.4)] transform hover:-translate-y-0.5 focus:outline-none focus-ring-red"
+            <div className="flex flex-col items-start gap-3 mt-8">
+              <motion.div
+                variants={itemVariants}
+                className="w-full sm:w-auto flex flex-col sm:flex-row gap-4"
               >
-                Book a Strategy Call
-                <ArrowRight className="w-5 h-5 transition-transform duration-200 group-hover:translate-x-1" />
-              </a>
-              <a
-                href="#how-it-works"
-                className="group px-8 py-4 rounded-xl bg-transparent border border-white/10 hover:border-primary-red/50 hover:text-primary-red text-base font-bold uppercase tracking-wider flex items-center justify-center gap-2 transition-all duration-300 focus:outline-none focus-ring-red"
+                <a
+                  href="#book-call"
+                  className="group px-8 py-4 rounded-xl bg-primary-red hover:bg-[#e01c2e] text-white-text text-base font-bold uppercase tracking-wider flex items-center justify-center gap-3 transition-all duration-300 hover:shadow-[0_0_25px_rgba(255,37,56,0.4)] transform hover:-translate-y-0.5 focus:outline-none focus-ring-red"
+                >
+                  Book a Strategy Call
+                  <ArrowRight className="w-5 h-5 transition-transform duration-200 group-hover:translate-x-1" />
+                </a>
+                <a
+                  href="#how-it-works"
+                  className="group px-8 py-4 rounded-xl bg-transparent border border-white/10 hover:border-primary-red/50 hover:text-primary-red text-base font-bold uppercase tracking-wider flex items-center justify-center gap-2 transition-all duration-300 focus:outline-none focus-ring-red"
+                >
+                  See How It Works
+                </a>
+              </motion.div>
+              <motion.span
+                variants={itemVariants}
+                className="text-xs font-semibold text-muted-text uppercase tracking-widest mt-1 block pl-1"
               >
-                See How It Works
-              </a>
-            </motion.div>
+                Lock in founding pricing before the first five spots are gone.
+              </motion.span>
+            </div>
 
             {/* Trust and Reviews row */}
             <motion.div

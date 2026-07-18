@@ -24,9 +24,6 @@ export default function CheckoutModal({
     contactName: "",
     email: "",
     phone: "",
-    cardNumber: "",
-    expiry: "",
-    cvc: "",
   });
 
   const [loading, setLoading] = useState(false);
@@ -47,19 +44,13 @@ export default function CheckoutModal({
     }
     setLoading(true);
 
-    const subject = encodeURIComponent(`New Book Moar Niche Sign Up - ${nicheName} - ${formData.businessName}`);
-    const body = encodeURIComponent(
-      `Hi Book Moar Team,\n\nI have successfully signed up for the ${nicheName} Growth Package!\n\nHere are my details:\n- Business Name: ${formData.businessName}\n- Contact Name: ${formData.contactName}\n- Phone Number: ${formData.phone}\n- Email: ${formData.email}\n- Price: ${price}/${period}\n\nPlease reach out to me to finalize my dashboard integrations.\n\nBest regards,\n${formData.contactName}`
-    );
+    const clientRef = `${formData.businessName} (${formData.contactName} - ${formData.phone}) [Niche: ${nicheName}]`;
+    const stripeUrl = `https://buy.stripe.com/14A5kDgGo98ver76o2ak000?prefilled_email=${encodeURIComponent(formData.email)}&client_reference_id=${encodeURIComponent(clientRef)}`;
 
-    // Simulate transaction processing
+    // Short transition before redirecting to Stripe
     setTimeout(() => {
-      setLoading(false);
-      setSuccess(true);
-      
-      // Open email client
-      window.location.href = `mailto:hello@bookmoar.com?subject=${subject}&body=${body}`;
-    }, 2000);
+      window.location.href = stripeUrl;
+    }, 1200);
   };
 
   return (
@@ -137,14 +128,20 @@ export default function CheckoutModal({
                 </div>
 
                 {/* Pricing Summary */}
-                <div className="bg-[#101014] border border-white/5 rounded-xl p-4 mb-6 flex justify-between items-center">
-                  <div>
-                    <p className="text-xs text-muted-text uppercase font-semibold">Selected Package</p>
-                    <p className="text-sm font-bold text-white-text mt-0.5">{nicheName} Growth Pack</p>
+                <div className="bg-[#101014] border border-white/5 rounded-xl p-4 mb-6 flex flex-col gap-2.5">
+                  <div className="flex justify-between items-center">
+                    <div>
+                      <p className="text-[10px] text-muted-text uppercase font-bold tracking-wider">Selected Plan</p>
+                      <p className="text-xs font-bold text-white-text mt-0.5">{nicheName} Founding Partner Pack</p>
+                    </div>
+                    <div className="text-right">
+                      <p className="text-xl font-display font-bold text-primary-red leading-none">$97/mo</p>
+                      <p className="text-[8px] text-muted-text uppercase font-semibold mt-0.5">Locked-in Rate</p>
+                    </div>
                   </div>
-                  <div className="text-right">
-                    <p className="text-2xl font-display font-black text-white-text leading-none">{price}</p>
-                    <p className="text-[10px] text-muted-text uppercase font-semibold mt-0.5">per {period}</p>
+                  <div className="border-t border-white/5 pt-2 flex justify-between items-center">
+                    <p className="text-[10px] text-muted-text uppercase font-bold tracking-wider">Due Today (Setup Fee)</p>
+                    <p className="text-lg font-display font-bold text-white-text leading-none">$199</p>
                   </div>
                 </div>
 
@@ -213,63 +210,6 @@ export default function CheckoutModal({
                     />
                   </div>
 
-                  {/* Simulated Card Info */}
-                  <div className="border-t border-white/5 pt-4 mt-6">
-                    <div className="flex items-center gap-1.5 mb-3 text-muted-text">
-                      <Lock className="w-3.5 h-3.5" />
-                      <span className="text-[10px] font-bold uppercase tracking-widest">
-                        SECURE CARD PAYMENT
-                      </span>
-                    </div>
-
-                    <div className="space-y-3 bg-[#101014] border border-white/5 rounded-xl p-4">
-                      <div>
-                        <label className="text-[9px] font-bold text-muted-text uppercase tracking-wider block mb-1">
-                          Card Number
-                        </label>
-                        <input
-                          type="text"
-                          name="cardNumber"
-                          value={formData.cardNumber}
-                          onChange={handleChange}
-                          placeholder="•••• •••• •••• ••••"
-                          maxLength={19}
-                          className="w-full bg-[#050505] border border-white/10 rounded-lg py-2 px-3 text-sm text-white-text placeholder:text-white/20 focus:border-primary-red/50 focus:outline-none transition-colors"
-                        />
-                      </div>
-                      <div className="grid grid-cols-2 gap-3">
-                        <div>
-                          <label className="text-[9px] font-bold text-muted-text uppercase tracking-wider block mb-1">
-                            Expiration Date
-                          </label>
-                          <input
-                            type="text"
-                            name="expiry"
-                            value={formData.expiry}
-                            onChange={handleChange}
-                            placeholder="MM / YY"
-                            maxLength={5}
-                            className="w-full bg-[#050505] border border-white/10 rounded-lg py-2 px-3 text-sm text-white-text placeholder:text-white/20 focus:border-primary-red/50 focus:outline-none transition-colors"
-                          />
-                        </div>
-                        <div>
-                          <label className="text-[9px] font-bold text-muted-text uppercase tracking-wider block mb-1">
-                            CVC Code
-                          </label>
-                          <input
-                            type="text"
-                            name="cvc"
-                            value={formData.cvc}
-                            onChange={handleChange}
-                            placeholder="CVC"
-                            maxLength={4}
-                            className="w-full bg-[#050505] border border-white/10 rounded-lg py-2 px-3 text-sm text-white-text placeholder:text-white/20 focus:border-primary-red/50 focus:outline-none transition-colors"
-                          />
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
                   {/* Submit Button */}
                   <button
                     disabled={loading}
@@ -279,18 +219,18 @@ export default function CheckoutModal({
                     {loading ? (
                       <>
                         <span className="w-4 h-4 border-2 border-white/30 border-t-white-text rounded-full animate-spin" />
-                        PROCESSING SECURE PAYMENT...
+                        REDIRECTING TO SECURE PAYMENT...
                       </>
                     ) : (
                       <>
                         <Shield className="w-4 h-4 fill-white-text/10" />
-                        AUTHORIZE & START SYSTEM
+                        PROCEED TO SECURE CHECKOUT
                       </>
                     )}
                   </button>
 
                   <div className="flex items-center justify-center gap-1.5 text-[9px] text-muted-text mt-3 font-semibold uppercase tracking-wider">
-                    <span>Protected by 256-bit encryption</span>
+                    <span>Processed securely via Stripe</span>
                     <span>•</span>
                     <span>No contract</span>
                   </div>

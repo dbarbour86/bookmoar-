@@ -4,7 +4,9 @@ import MetricsRow from "@/components/MetricsRow";
 import Services from "@/components/Services";
 import System from "@/components/System";
 import Process from "@/components/Process";
+import FAQ from "@/components/FAQ";
 import FinalCTA from "@/components/FinalCTA";
+import FoundingOfferBottom from "@/components/FoundingOfferBottom";
 import Footer from "@/components/Footer";
 
 export default function Home() {
@@ -70,9 +72,15 @@ export default function Home() {
         {/* Section 4: Vertical step-based process flow */}
         <Process />
 
+        {/* Section 4.5: Frequently Asked Questions */}
+        <FAQ />
+
         {/* Section 5: Radial red glow CTA */}
         <FinalCTA />
       </main>
+
+      {/* Section 5.5: Founding Client Offer Large Bottom Callout */}
+      <FoundingOfferBottom />
 
       {/* Section 6: Full 4-column footer info */}
       <Footer />

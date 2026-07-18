@@ -29,11 +29,24 @@ export default function Header() {
 
   return (
     <>
+      {/* Founding Client Banner */}
+      <div className="fixed top-0 left-0 right-0 z-50 bg-[#0B0B0D] border-b border-primary-red/10 py-2.5 px-4 text-center text-xs">
+        <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2">
+          <span className="inline-flex items-center gap-1.5 font-bold text-primary-red uppercase tracking-wider">
+            <span>🔥</span> Founding Client Offer
+          </span>
+          <span className="text-muted-text hidden sm:inline">•</span>
+          <span className="text-white-text/90 font-medium">
+            Introductory pricing is available for the first <strong className="text-primary-red">5 clients only</strong>. Once all 5 spots are filled, pricing will increase. Founding clients keep their pricing forever.
+          </span>
+        </div>
+      </div>
+
       <header
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        className={`fixed left-0 right-0 z-50 transition-all duration-300 ${
           scrolled
-            ? "bg-brand-bg/85 backdrop-blur-md border-b border-border-color py-4"
-            : "bg-transparent py-6"
+            ? "bg-brand-bg/85 backdrop-blur-md border-b border-border-color py-4 top-0"
+            : "bg-transparent py-6 top-[40px] sm:top-[36px]"
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
@@ -138,12 +151,12 @@ export default function Header() {
                 initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: navItems.length * 0.05 }}
-                className="w-full max-w-xs flex flex-col gap-4 mt-8 pt-8 border-t border-border-color text-center"
+                className="w-full max-w-xs flex flex-col items-center gap-4 mt-8 pt-8 border-t border-border-color text-center"
               >
                 <a
                   href="#login"
                   onClick={() => setMobileMenuOpen(false)}
-                  className="text-lg font-medium text-muted-text hover:text-white-text transition-colors"
+                  className="text-lg font-medium text-muted-text hover:text-white-text transition-colors mb-2"
                 >
                   Sign In
                 </a>
@@ -154,6 +167,9 @@ export default function Header() {
                 >
                   BOOK A CALL
                 </a>
+                <span className="text-[10px] text-muted-text font-semibold uppercase tracking-widest mt-1 block max-w-[240px] mx-auto leading-normal">
+                  Lock in founding pricing before the first five spots are gone.
+                </span>
               </motion.div>
             </nav>
           </motion.div>

@@ -4,6 +4,8 @@ import { useState } from "react";
 import Image from "next/image";
 import { Calendar, Check, Star, ArrowLeft, Shield, Clock, Zap } from "lucide-react";
 import CheckoutModal from "./CheckoutModal";
+import FAQ from "./FAQ";
+import FoundingOfferBottom from "./FoundingOfferBottom";
 import { Niche } from "@/data/niches";
 
 interface NichePageClientProps {
@@ -100,7 +102,23 @@ export default function NichePageClient({ nicheData }: NichePageClientProps) {
           </div>
 
           {/* RIGHT COLUMN: Image & Pricing Card */}
-          <div className="lg:col-span-5 w-full lg:sticky lg:top-28">
+          <div className="lg:col-span-5 w-full lg:sticky lg:top-28 flex flex-col gap-4">
+            
+            {/* Founding Client Pricing Callout */}
+            <div className="rounded-2xl bg-card-bg border border-primary-red/25 p-5 relative overflow-hidden text-left">
+              <div className="absolute top-0 right-0 w-24 h-24 bg-primary-red/5 rounded-full blur-xl pointer-events-none" />
+              <h4 className="font-display text-lg font-normal text-white-text uppercase tracking-wide flex items-center gap-2 mb-2">
+                <span className="w-1.5 h-1.5 rounded-full bg-primary-red animate-pulse" />
+                Founding Client Pricing
+              </h4>
+              <p className="text-xs text-muted-text leading-relaxed mb-4">
+                We're looking for our first five businesses to partner with. If you're one of the first five clients, you'll lock in our introductory pricing forever.
+              </p>
+              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-primary-red/35 bg-primary-red/10 text-primary-red text-[10px] font-bold uppercase tracking-wider">
+                Only 5 Founding Client Spots Available
+              </span>
+            </div>
+
             <div className="rounded-2xl bg-card-bg border border-border-color p-6 sm:p-8 shadow-2xl flex flex-col relative overflow-hidden group hover:border-primary-red/20 transition-all duration-300">
               
               {/* Image Preview */}
@@ -118,16 +136,34 @@ export default function NichePageClient({ nicheData }: NichePageClientProps) {
               </div>
 
               {/* Pricing block */}
-              <div className="flex items-baseline justify-between mb-2">
-                <span className="text-xs font-bold text-muted-text uppercase tracking-wider">
-                  ALL-INCLUSIVE SYSTEM
-                </span>
-                <div className="text-right">
-                  <span className="font-display text-4xl sm:text-5xl font-normal text-white-text leading-none">
-                    {nicheData.price}
+              <div className="flex flex-col gap-2.5 mb-5">
+                <div className="flex justify-between items-baseline">
+                  <span className="text-[10px] font-bold text-muted-text uppercase tracking-wider">
+                    Standard Pricing
                   </span>
-                  <span className="text-sm text-muted-text font-semibold uppercase tracking-wider ml-1">
-                    /{nicheData.period}
+                  <span className="text-xs font-semibold text-muted-text line-through">
+                    {nicheData.price}/{nicheData.period}
+                  </span>
+                </div>
+                <div className="flex justify-between items-baseline border-t border-white/5 pt-2.5">
+                  <span className="text-[10px] font-bold text-primary-red uppercase tracking-wider">
+                    Founding Member Rate
+                  </span>
+                  <div className="text-right">
+                    <span className="font-display text-4xl sm:text-5xl font-normal text-white-text leading-none">
+                      $97
+                    </span>
+                    <span className="text-xs text-muted-text font-semibold uppercase tracking-wider ml-1">
+                      /month
+                    </span>
+                  </div>
+                </div>
+                <div className="flex justify-between items-baseline border-t border-white/5 pt-2.5">
+                  <span className="text-[10px] font-bold text-muted-text uppercase tracking-wider">
+                    One-time Setup Fee
+                  </span>
+                  <span className="text-xs font-bold text-white-text uppercase">
+                    $199 setup
                   </span>
                 </div>
               </div>
@@ -140,7 +176,7 @@ export default function NichePageClient({ nicheData }: NichePageClientProps) {
                 </div>
                 <div className="flex items-center gap-2">
                   <Clock className="w-4 h-4 text-primary-red shrink-0" />
-                  10-minute setup phone call guarantee.
+                  A2P 10DLC compliant setup in 10 business days.
                 </div>
                 <div className="flex items-center gap-2">
                   <Zap className="w-4 h-4 text-primary-red shrink-0" />
@@ -156,7 +192,11 @@ export default function NichePageClient({ nicheData }: NichePageClientProps) {
                 Get Started Now
               </button>
 
-              <span className="text-[10px] text-muted-text font-semibold uppercase tracking-widest text-center mt-3 block">
+              <span className="text-[10px] text-primary-red font-semibold uppercase tracking-widest text-center mt-2.5 block animate-pulse">
+                Lock in founding pricing before the first five spots are gone.
+              </span>
+
+              <span className="text-[9px] text-muted-text font-semibold uppercase tracking-widest text-center mt-2 block">
                 30-Day Satisfaction Guarantee
               </span>
 
@@ -165,6 +205,12 @@ export default function NichePageClient({ nicheData }: NichePageClientProps) {
 
         </div>
       </main>
+
+      {/* Founding Client Offer Bottom Callout */}
+      <FoundingOfferBottom />
+
+      {/* FAQ Accordion Section */}
+      <FAQ />
 
       {/* Checkout Modal overlay */}
       <CheckoutModal

@@ -62,7 +62,7 @@ export default function FinalCTA() {
             Book My Free Strategy Call
           </a>
           <span className="text-xs font-semibold text-muted-text uppercase tracking-widest">
-            No pressure. No hard sell. Just a practical growth plan.
+            Lock in founding pricing before the first five spots are gone.
           </span>
         </motion.div>
 
