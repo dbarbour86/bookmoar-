@@ -81,10 +81,10 @@ export default function Hero() {
                 className="w-full sm:w-auto flex flex-col sm:flex-row gap-4"
               >
                 <a
-                  href="#book-call"
+                  href="#lock-pricing"
                   className="group px-8 py-4 rounded-xl bg-primary-red hover:bg-[#e01c2e] text-white-text text-base font-bold uppercase tracking-wider flex items-center justify-center gap-3 transition-all duration-300 hover:shadow-[0_0_25px_rgba(255,37,56,0.4)] transform hover:-translate-y-0.5 focus:outline-none focus-ring-red"
                 >
-                  Book a Strategy Call
+                  Lock In Pricing
                   <ArrowRight className="w-5 h-5 transition-transform duration-200 group-hover:translate-x-1" />
                 </a>
                 <a

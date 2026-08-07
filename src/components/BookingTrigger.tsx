@@ -1,14 +1,14 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import ContactModal from "./ContactModal";
+import CheckoutModal from "./CheckoutModal";
 
 export default function BookingTrigger() {
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     const handleHashChange = () => {
-      if (window.location.hash === "#book-call") {
+      if (window.location.hash === "#lock-pricing") {
         setIsOpen(true);
       }
     };
@@ -23,7 +23,7 @@ export default function BookingTrigger() {
   const handleClose = () => {
     setIsOpen(false);
     // Clear URL hash cleanly without forcing a page reload
-    if (window.location.hash === "#book-call") {
+    if (window.location.hash === "#lock-pricing") {
       window.history.pushState(
         "",
         document.title,
@@ -32,5 +32,13 @@ export default function BookingTrigger() {
     }
   };
 
-  return <ContactModal isOpen={isOpen} onClose={handleClose} />;
+  return (
+    <CheckoutModal
+      isOpen={isOpen}
+      onClose={handleClose}
+      nicheName="Founding Member"
+      price="$97"
+      period="mo"
+    />
+  );
 }

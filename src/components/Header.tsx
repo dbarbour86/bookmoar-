@@ -83,10 +83,10 @@ export default function Header() {
               Sign In
             </a>
             <a
-              href="#book-call"
+              href="#lock-pricing"
               className="px-5 py-2.5 rounded-lg bg-primary-red hover:bg-[#e01c2e] text-white-text font-semibold text-sm transition-all duration-200 transform hover:scale-102 hover:shadow-[0_0_15px_rgba(255,37,56,0.3)] focus:outline-none focus-ring-red"
             >
-              Book a Call
+              Lock In Pricing
             </a>
           </div>
 
@@ -161,11 +161,11 @@ export default function Header() {
                   Sign In
                 </a>
                 <a
-                  href="#book-call"
+                  href="#lock-pricing"
                   onClick={() => setMobileMenuOpen(false)}
                   className="w-full py-3.5 rounded-lg bg-primary-red hover:bg-[#e01c2e] text-white-text font-bold tracking-wider text-center shadow-[0_0_20px_rgba(255,37,56,0.3)] transition-all"
                 >
-                  BOOK A CALL
+                  LOCK IN PRICING
                 </a>
                 <span className="text-[10px] text-muted-text font-semibold uppercase tracking-widest mt-1 block max-w-[240px] mx-auto leading-normal">
                   Lock in founding pricing before the first five spots are gone.
