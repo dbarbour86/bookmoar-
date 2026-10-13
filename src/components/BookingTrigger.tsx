@@ -37,6 +37,7 @@ export default function BookingTrigger() {
       isOpen={isOpen}
       onClose={handleClose}
       nicheName="Founding Member"
+      planTitle="Founding Member Partner"
       price="$97"
       period="mo"
     />

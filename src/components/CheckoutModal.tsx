@@ -10,6 +10,7 @@ interface CheckoutModalProps {
   nicheName: string;
   price: string;
   period: string;
+  planTitle?: string;
 }
 
 export default function CheckoutModal({
@@ -18,6 +19,7 @@ export default function CheckoutModal({
   nicheName,
   price,
   period,
+  planTitle,
 }: CheckoutModalProps) {
   const [formData, setFormData] = useState({
     businessName: "",
@@ -132,7 +134,12 @@ export default function CheckoutModal({
                   <div className="flex justify-between items-center">
                     <div>
                       <p className="text-[10px] text-muted-text uppercase font-bold tracking-wider">Selected Plan</p>
-                      <p className="text-xs font-bold text-white-text mt-0.5">{nicheName} Founding Partner Pack</p>
+                      <p className="text-xs font-bold text-white-text mt-0.5">
+                        {planTitle ||
+                          (nicheName.toLowerCase().includes("founding")
+                            ? "Founding Member Partner"
+                            : `${nicheName} Founding Partner Pack`)}
+                      </p>
                     </div>
                     <div className="text-right">
                       <p className="text-xl font-display font-bold text-primary-red leading-none">$97/mo</p>
