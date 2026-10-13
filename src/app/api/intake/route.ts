@@ -224,6 +224,33 @@ ${servicesText || "  None provided"}
           } catch (_) {}
         }
 
+        // If Resend is in free test mode and restricts recipients to the verified account owner:
+        if (
+          !resendRes.ok &&
+          resendData?.message &&
+          resendData.message.includes("You can only send testing emails to your own email address")
+        ) {
+          const accountOwnerMatch = resendData.message.match(/\(([^)]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})\)/);
+          const fallbackRecipient = accountOwnerMatch ? accountOwnerMatch[1] : "derek.barbour@gmail.com";
+          console.warn(`[RESEND NOTICE] Sending to Resend account owner email: ${fallbackRecipient}`);
+          resendRes = await fetch("https://api.resend.com/emails", {
+            method: "POST",
+            headers: {
+              Authorization: `Bearer ${process.env.RESEND_API_KEY}`,
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              from: "Book Moar <onboarding@resend.dev>",
+              to: [fallbackRecipient],
+              subject: `[FORWARDED TO ${targetEmail}] ${emailSubject}`,
+              text: `NOTE: Resend is in unverified domain mode. This intake was delivered to your account email (${fallbackRecipient}). To receive at ${targetEmail}, verify your domain at resend.com/domains.\n\n` + emailBodyText,
+            }),
+          });
+          try {
+            resendData = await resendRes.json();
+          } catch (_) {}
+        }
+
         if (resendRes.ok) {
           console.log("[RESEND SUCCESS]", resendData);
           emailSent = true;
