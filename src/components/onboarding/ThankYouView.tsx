@@ -85,7 +85,7 @@ export default function ThankYouView({ intakeId, initialPayload }: ThankYouViewP
               We know your business is your lifeblood, and trusting us to build and launch your client booking engine means everything to us. <strong className="text-white-text">You made the right call.</strong>
             </p>
             <p>
-              Our team has already received your intake specification at <span className="text-primary-red font-medium">hello@bookmoar.com</span>. We are configuring your staging database, instant SMS dispatch rules, and automated Google review loops right now.
+              Our team has already received your intake specification at <span className="text-primary-red font-medium">hello@bookmoar.com</span>. We&apos;re already reviewing your details and putting your setup into motion.
             </p>
           </div>
 
@@ -163,49 +163,49 @@ export default function ThankYouView({ intakeId, initialPayload }: ThankYouViewP
           </div>
         </div>
 
-        {/* What Happens Next Roadmap Card */}
+        {/* What Happens Right Now Section */}
         <div className="rounded-2xl border border-white/10 bg-[#0B0B0D] p-6 sm:p-8 space-y-5">
           <div className="flex items-center gap-2 border-b border-white/10 pb-4">
             <Clock className="w-4 h-4 text-primary-red" />
             <h2 className="text-white-text text-sm font-bold uppercase tracking-wider">
-              WHAT HAPPENS RIGHT NOW (PROVISIONING TIMELINE)
+              WHAT HAPPENS RIGHT NOW
             </h2>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div className="p-4 bg-[#050505] border border-white/5 rounded-xl space-y-2">
+            <div className="p-5 bg-[#050505] border border-white/5 rounded-xl space-y-2.5">
               <div className="flex items-center gap-2 text-primary-red font-display text-lg">
                 <span>01</span>
                 <span className="text-white-text text-xs font-sans font-bold uppercase tracking-wider">
-                  STAGING ENVIRONMENT
+                  WE BUILD YOUR SYSTEM
                 </span>
               </div>
               <p className="text-xs text-muted-text leading-relaxed">
-                We generate your secure sandbox database and wire your core services matrix within 10 minutes.
+                Your booking site and follow-up system get built over the next 2 weeks. No work needed from you...just sit tight while we put it together. If we need anything, we&apos;ll contact you.
               </p>
             </div>
 
-            <div className="p-4 bg-[#050505] border border-white/5 rounded-xl space-y-2">
+            <div className="p-5 bg-[#050505] border border-white/5 rounded-xl space-y-2.5">
               <div className="flex items-center gap-2 text-primary-red font-display text-lg">
                 <span>02</span>
                 <span className="text-white-text text-xs font-sans font-bold uppercase tracking-wider">
-                  SMS DISPATCH PING
+                  WE TEST IT ON YOUR PHONE
                 </span>
               </div>
               <p className="text-xs text-muted-text leading-relaxed">
-                A live test ping is dispatched to your alert phone {alertPhone ? `(${alertPhone})` : ""} to confirm real-time SMS delivery.
+                Before launch, we send a live test straight to your phone so you can watch a lead come in in real time...exactly what your customers will experience.
               </p>
             </div>
 
-            <div className="p-4 bg-[#050505] border border-white/5 rounded-xl space-y-2">
+            <div className="p-5 bg-[#050505] border border-white/5 rounded-xl space-y-2.5">
               <div className="flex items-center gap-2 text-primary-red font-display text-lg">
                 <span>03</span>
                 <span className="text-white-text text-xs font-sans font-bold uppercase tracking-wider">
-                  DOMAIN &amp; CALENDAR GO-LIVE
+                  YOU GO LIVE
                 </span>
               </div>
               <p className="text-xs text-muted-text leading-relaxed">
-                Your fast-launch subdomain or custom DNS routes go live, and Google Review requests are linked to your profile.
+                Your site goes live and your number gets verified. Then I&apos;ll send you short video walkthroughs showing everything working — watch them anytime, at your own pace. Got questions? Text me directly, I answer fast.
               </p>
             </div>
           </div>
