@@ -13,6 +13,7 @@ import Step2Services from "./Step2Services";
 import Step3SetupAssets from "./Step3SetupAssets";
 import TerminalLoader from "./TerminalLoader";
 import ConfirmationView from "./ConfirmationView";
+import ThankYouView from "./ThankYouView";
 
 /**
  * CONFIGURABLE WEBHOOK ENDPOINT
@@ -164,16 +165,27 @@ export default function OnboardingApp() {
       },
     };
 
-    // Keep loader active for realistic brutalist telemetry sequence (~3.8s)
-    const minLoaderDelay = new Promise((resolve) => setTimeout(resolve, 3800));
+    // Keep loader active for realistic telemetry sequence (~3.5s)
+    const minLoaderDelay = new Promise((resolve) => setTimeout(resolve, 3500));
 
-    // Webhook dispatch attempt
-    let webhookSuccess = false;
+    // 1. Dispatch to local /api/intake which relays directly to hello@bookmoar.com
+    try {
+      await fetch("/api/intake", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+      console.log("[INTAKE ROUTED] Sent intake payload to hello@bookmoar.com via /api/intake");
+    } catch (apiErr) {
+      console.warn("Could not route to /api/intake", apiErr);
+    }
+
+    // 2. Also dispatch to external WEBHOOK_URL if configured
     try {
       const controller = new AbortController();
-      const timeoutId = setTimeout(() => controller.abort(), 6000);
+      const timeoutId = setTimeout(() => controller.abort(), 5000);
 
-      const res = await fetch(WEBHOOK_URL, {
+      await fetch(WEBHOOK_URL, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -183,31 +195,21 @@ export default function OnboardingApp() {
         signal: controller.signal,
       });
       clearTimeout(timeoutId);
-
-      if (res.ok) {
-        webhookSuccess = true;
-      }
     } catch (err) {
-      console.warn("Primary webhook delivery warning (network or CORS). Executing backup route...", err);
-    }
-
-    // If external webhook wasn't delivered or CORS blocked, send to local /api/intake backup
-    if (!webhookSuccess) {
-      try {
-        await fetch("/api/intake", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(payload),
-        });
-      } catch (backupErr) {
-        console.warn("Local API backup completed.", backupErr);
-      }
+      // Ignored if external webhook is mock or offline
     }
 
     // Wait for the full terminal telemetry animation
     await minLoaderDelay;
 
-    // Clear draft and show confirmation
+    // Cache to sessionStorage for Thank You page reload resilience
+    try {
+      sessionStorage.setItem("bookmoar_last_intake", JSON.stringify(payload));
+    } catch (e) {
+      // sessionStorage quota or private mode
+    }
+
+    // Clear draft and show thank you view
     localStorage.removeItem(STORAGE_KEY);
     setIsSubmitting(false);
     setSubmittedPayload(payload);
@@ -227,27 +229,28 @@ export default function OnboardingApp() {
       <div className="absolute top-1/4 left-1/4 -translate-x-1/2 -translate-y-1/2 w-[550px] h-[550px] rounded-full bg-primary-red/5 blur-[120px] pointer-events-none" />
       <div className="absolute top-1/2 right-0 w-[450px] h-[450px] rounded-full bg-primary-red/5 blur-[120px] pointer-events-none" />
 
-      {/* Telemetry Header */}
-      <TelemetryHeader
-        lastSavedTime={lastSavedTime}
-        onResetDraft={handleResetDraft}
-        currentStep={currentStep}
-      />
-
       {/* Main Container */}
-      <main className="max-w-4xl mx-auto px-4 py-8 sm:py-12 space-y-8 relative z-10">
-        {/* Terminal Loader State */}
-        {isSubmitting ? (
+      {isSubmitting ? (
+        <main className="max-w-4xl mx-auto px-4 py-8 sm:py-12 space-y-8 relative z-10">
           <TerminalLoader businessName={formData.business_name} />
-        ) : submittedPayload ? (
-          /* Confirmation State */
-          <ConfirmationView
-            payload={submittedPayload}
-            onStartNew={handleStartNew}
+        </main>
+      ) : submittedPayload ? (
+        /* Thank You View matching intake page */
+        <ThankYouView
+          intakeId={submittedPayload.intake_id}
+          initialPayload={submittedPayload}
+        />
+      ) : (
+        /* Form Active State */
+        <>
+          {/* Telemetry Header */}
+          <TelemetryHeader
+            lastSavedTime={lastSavedTime}
+            onResetDraft={handleResetDraft}
+            currentStep={currentStep}
           />
-        ) : (
-          /* Form Active State */
-          <div className="space-y-6">
+
+          <main className="max-w-4xl mx-auto px-4 py-8 sm:py-12 space-y-8 relative z-10">
             {/* System Title Banner */}
             <div className="rounded-2xl border border-white/10 bg-[#0B0B0D] p-6 sm:p-8 relative overflow-hidden shadow-2xl">
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
@@ -320,9 +323,9 @@ export default function OnboardingApp() {
                 <span className="text-primary-red font-medium">STAGING SLA: &lt; 10 MINS</span>
               </div>
             </footer>
-          </div>
-        )}
-      </main>
+          </main>
+        </>
+      )}
     </div>
   );
 }
