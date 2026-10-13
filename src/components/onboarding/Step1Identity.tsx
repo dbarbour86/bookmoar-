@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { IntakeFormData } from "./types";
-import { MessageSquare, Mail, Building2, User, MapPin, AlertCircle, ArrowRight } from "lucide-react";
+import { MessageSquare, Mail, Building2, User, MapPin, AlertCircle, ArrowRight, ShieldCheck, Sparkles } from "lucide-react";
 
 interface Step1Props {
   data: IntakeFormData;
@@ -20,9 +20,15 @@ export default function Step1Identity({ data, onChange, onNext }: Step1Props) {
     return `(${cleaned.slice(0, 3)}) ${cleaned.slice(3, 6)}-${cleaned.slice(6, 10)}`;
   };
 
-  const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const formatted = formatPhone(e.target.value);
-    onChange({ alert_phone: formatted });
+  const handlePhoneChange = (field: "alert_phone" | "verification_phone", val: string) => {
+    const formatted = formatPhone(val);
+    onChange({ [field]: formatted });
+  };
+
+  const copyAlertToVerification = () => {
+    if (data.alert_phone) {
+      onChange({ verification_phone: data.alert_phone });
+    }
   };
 
   const markTouched = (field: string) => {
@@ -34,7 +40,7 @@ export default function Step1Identity({ data, onChange, onNext }: Step1Props) {
   };
 
   const isPhoneValid = (phone: string) => {
-    const digits = phone.replace(/\D/g, "");
+    const digits = (phone || "").replace(/\D/g, "");
     return digits.length >= 10;
   };
 
@@ -42,8 +48,11 @@ export default function Step1Identity({ data, onChange, onNext }: Step1Props) {
     business_name: !data.business_name.trim() ? "Business name is required." : null,
     owner_name: !data.owner_name.trim() ? "Owner contact name is required." : null,
     alert_phone: !isPhoneValid(data.alert_phone) ? "Valid 10-digit mobile number required for SMS dispatch." : null,
+    verification_phone: !isPhoneValid(data.verification_phone)
+      ? "Valid 10-digit phone number required for carrier verification."
+      : null,
     alert_email: !isEmailValid(data.alert_email) ? "Valid email address required." : null,
-    service_area: !data.service_area.trim() ? "Service area or radius required." : null,
+    service_area: !data.service_area.trim() ? "Cities or ZIP codes served is required." : null,
   };
 
   const isValid = !Object.values(errors).some(Boolean);
@@ -54,6 +63,7 @@ export default function Step1Identity({ data, onChange, onNext }: Step1Props) {
       business_name: true,
       owner_name: true,
       alert_phone: true,
+      verification_phone: true,
       alert_email: true,
       service_area: true,
     });
@@ -161,7 +171,7 @@ export default function Step1Identity({ data, onChange, onNext }: Step1Props) {
             type="tel"
             required
             value={data.alert_phone}
-            onChange={handlePhoneChange}
+            onChange={(e) => handlePhoneChange("alert_phone", e.target.value)}
             onBlur={() => markTouched("alert_phone")}
             placeholder="(704) 555-0199"
             className={`w-full min-h-[48px] px-4 py-3 bg-[#050505] border rounded-xl text-white-text text-sm font-mono placeholder:text-white/20 outline-none transition-all ${
@@ -178,6 +188,47 @@ export default function Step1Identity({ data, onChange, onNext }: Step1Props) {
             <p className="flex items-center gap-1 text-xs text-primary-red font-medium">
               <AlertCircle className="w-3.5 h-3.5" />
               {errors.alert_phone}
+            </p>
+          )}
+        </div>
+
+        {/* Verification Phone Number (Required for Carrier Verification) */}
+        <div className="space-y-2">
+          <div className="flex items-center justify-between">
+            <label className="flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-white-text">
+              <ShieldCheck className="w-3.5 h-3.5 text-primary-red" />
+              VERIFICATION PHONE NUMBER <span className="text-primary-red">*</span>
+            </label>
+            {data.alert_phone && (
+              <button
+                type="button"
+                onClick={copyAlertToVerification}
+                className="text-[10px] text-primary-red hover:underline font-bold uppercase tracking-wider cursor-pointer"
+              >
+                Same as alert mobile
+              </button>
+            )}
+          </div>
+          <input
+            type="tel"
+            required
+            value={data.verification_phone}
+            onChange={(e) => handlePhoneChange("verification_phone", e.target.value)}
+            onBlur={() => markTouched("verification_phone")}
+            placeholder="(704) 555-0199"
+            className={`w-full min-h-[48px] px-4 py-3 bg-[#050505] border rounded-xl text-white-text text-sm font-mono placeholder:text-white/20 outline-none transition-all ${
+              touched.verification_phone && errors.verification_phone
+                ? "border-primary-red focus:ring-1 focus:ring-primary-red"
+                : "border-white/10 focus:border-primary-red focus:ring-1 focus:ring-primary-red/40"
+            }`}
+          />
+          <p className="text-xs text-muted-text font-medium text-white/70">
+            We start carrier verification on day one — double-check this number.
+          </p>
+          {touched.verification_phone && errors.verification_phone && (
+            <p className="flex items-center gap-1 text-xs text-primary-red font-medium">
+              <AlertCircle className="w-3.5 h-3.5" />
+              {errors.verification_phone}
             </p>
           )}
         </div>
@@ -214,16 +265,37 @@ export default function Step1Identity({ data, onChange, onNext }: Step1Props) {
             </p>
           )}
         </div>
+
+        {/* What does your ideal booked job look like? */}
+        <div className="space-y-2">
+          <label className="flex items-center justify-between text-xs font-bold uppercase tracking-wider text-muted-text">
+            <span className="flex items-center gap-1.5 text-white-text">
+              <Sparkles className="w-3.5 h-3.5 text-primary-red" />
+              WHAT DOES YOUR IDEAL BOOKED JOB LOOK LIKE?
+            </span>
+            <span className="text-[10px] text-muted-text font-mono">[HIGH MARGIN]</span>
+          </label>
+          <input
+            type="text"
+            value={data.ideal_job}
+            onChange={(e) => onChange({ ideal_job: e.target.value })}
+            placeholder="e.g. Full interior extraction + 3-year ceramic coating on full-size trucks ($450+)"
+            className="w-full min-h-[48px] px-4 py-3 bg-[#050505] border border-white/10 rounded-xl text-white-text text-sm placeholder:text-white/20 focus:border-primary-red focus:ring-1 focus:ring-primary-red/40 outline-none transition-all"
+          />
+          <p className="text-xs text-muted-text">
+            Helps our ad copy and lead filters attract your highest-profit work.
+          </p>
+        </div>
       </div>
 
-      {/* Service Area / Radius */}
+      {/* Service Area: cities or ZIP codes served (required) */}
       <div className="space-y-2 pt-2">
         <label className="flex items-center justify-between text-xs font-bold uppercase tracking-wider text-muted-text">
           <span className="flex items-center gap-1.5 text-white-text">
             <MapPin className="w-3.5 h-3.5 text-primary-red" />
-            SERVICE AREA &amp; RADIUS <span className="text-primary-red">*</span>
+            SERVICE AREA (CITIES OR ZIP CODES SERVED) <span className="text-primary-red">*</span>
           </span>
-          <span className="text-[10px] text-muted-text font-mono">[BOUNDS]</span>
+          <span className="text-[10px] text-muted-text font-mono">[COVERAGE]</span>
         </label>
         <input
           type="text"
@@ -231,7 +303,7 @@ export default function Step1Identity({ data, onChange, onNext }: Step1Props) {
           value={data.service_area}
           onChange={(e) => onChange({ service_area: e.target.value })}
           onBlur={() => markTouched("service_area")}
-          placeholder="e.g. Zebulon, NC 27597 + 25-mile radius (Raleigh, Wake Forest, Wendell)"
+          placeholder="e.g. Raleigh, Cary, Apex, Wake Forest (27597, 27601, 27502) or 25-mile radius"
           className={`w-full min-h-[48px] px-4 py-3 bg-[#050505] border rounded-xl text-white-text text-sm placeholder:text-white/20 outline-none transition-all ${
             touched.service_area && errors.service_area
               ? "border-primary-red focus:ring-1 focus:ring-primary-red"

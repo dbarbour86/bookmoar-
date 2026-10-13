@@ -110,13 +110,23 @@ export default function ConfirmationView({ payload, onStartNew }: ConfirmationVi
                 <span className="text-primary-red font-bold font-mono">{business_identity.alert_phone}</span>
               </p>
               <p>
+                <strong className="text-muted-text uppercase text-[10px] block">Carrier Verification Phone:</strong>
+                <span className="text-white-text font-bold font-mono">{business_identity.verification_phone || business_identity.alert_phone}</span>
+              </p>
+              <p>
                 <strong className="text-muted-text uppercase text-[10px] block">Appointment Email:</strong>
                 <span className="text-white-text">{business_identity.alert_email}</span>
               </p>
               <p>
-                <strong className="text-muted-text uppercase text-[10px] block">Service Radius:</strong>
+                <strong className="text-muted-text uppercase text-[10px] block">Service Area:</strong>
                 <span className="text-white-text">{business_identity.service_area}</span>
               </p>
+              {business_identity.ideal_job && (
+                <p>
+                  <strong className="text-muted-text uppercase text-[10px] block">Ideal Booked Job:</strong>
+                  <span className="text-white-text italic">&quot;{business_identity.ideal_job}&quot;</span>
+                </p>
+              )}
             </div>
           </div>
 
@@ -126,6 +136,10 @@ export default function ConfirmationView({ payload, onStartNew }: ConfirmationVi
               [02] SCHEDULE &amp; DOMAIN ENGINE
             </span>
             <div className="space-y-2 text-muted-text">
+              <p>
+                <strong className="text-muted-text uppercase text-[10px] block">Trade Focus:</strong>
+                <span className="text-primary-red font-bold uppercase">{services_configuration.selected_trade || "Auto Detailing"}</span>
+              </p>
               <p>
                 <strong className="text-muted-text uppercase text-[10px] block">Operating Hours:</strong>
                 <span className="text-white-text font-bold">{services_configuration.operating_hours}</span>
@@ -143,11 +157,26 @@ export default function ConfirmationView({ payload, onStartNew }: ConfirmationVi
                 </span>
               </p>
               <p>
-                <strong className="text-muted-text uppercase text-[10px] block">Google Review Sync:</strong>
+                <strong className="text-muted-text uppercase text-[10px] block">Google Business Profile:</strong>
                 <span className="text-white-text">
-                  {setup_and_assets.gbp_link ? "Custom Profile Linked" : "Auto-Assisted Onboarding"}
+                  {setup_and_assets.gbp_link ? (
+                    <>
+                      <span>{setup_and_assets.gbp_link}</span>
+                      {setup_and_assets.gbp_admin_invite_sent && (
+                        <span className="text-primary-red font-bold ml-1.5">[Admin Invite Sent ✓]</span>
+                      )}
+                    </>
+                  ) : (
+                    "Pending / Assist Onboarding"
+                  )}
                 </span>
               </p>
+              {setup_and_assets.existing_website_url && (
+                <p>
+                  <strong className="text-muted-text uppercase text-[10px] block">Existing Website:</strong>
+                  <span className="text-white-text">{setup_and_assets.existing_website_url}</span>
+                </p>
+              )}
               <p>
                 <strong className="text-muted-text uppercase text-[10px] block">Assets Staged:</strong>
                 <span className="text-white-text">

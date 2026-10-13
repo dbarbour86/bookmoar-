@@ -31,20 +31,26 @@ Timestamp: ${timestamp}
 - Business Name: ${identity.business_name || "N/A"}
 - Primary Owner: ${identity.owner_name || "N/A"}
 - Alert Mobile (SMS): ${identity.alert_phone || "N/A"}
+- Carrier Verification Phone: ${identity.verification_phone || "N/A"}
 - Alert Email: ${identity.alert_email || "N/A"}
 - Service Area & Radius: ${identity.service_area || "N/A"}
+- Ideal Booked Job: ${identity.ideal_job || "N/A"}
 
 [2] CORE SERVICES & SCHEDULING:
+- Selected Trade: ${servicesConfig.selected_trade || "N/A"}
 - Operating Hours: ${servicesConfig.operating_hours || "N/A"}
 - Buffer Time: ${servicesConfig.buffer_time || "N/A"}
 - Configured Services (${servicesList.length}):
 ${servicesText || "  None provided"}
 
-[3] DOMAIN & BRAND ASSETS:
+[3] DOMAIN, GBP & ACCESS ASSETS:
 - Domain Choice: ${setup.domain_choice || "N/A"}
 - Domain Name / Subdomain: ${setup.domain_name || "N/A"}
 - Registrar Notes: ${setup.registrar_access_notes || "N/A"}
 - Google Business Profile (GBP): ${setup.gbp_link || "N/A"}
+- GBP Admin Invite Sent: ${setup.gbp_admin_invite_sent ? "YES" : "NO"}
+- Existing Website URL: ${setup.existing_website_url || "N/A"}
+- Hosting / CMS Logins: ${setup.hosting_cms_logins || "N/A"}
 - Assets Staged: ${setup.asset_count || 0} files
 - Template Fallback: ${setup.used_template_fallback ? "Yes" : "No"}
 ---------------------------------------
@@ -54,7 +60,8 @@ ${servicesText || "  None provided"}
       intakeId,
       business: identity.business_name,
       owner: identity.owner_name,
-      phone: identity.alert_phone,
+      alertPhone: identity.alert_phone,
+      verificationPhone: identity.verification_phone,
       email: identity.alert_email,
     });
 
@@ -101,13 +108,19 @@ ${servicesText || "  None provided"}
           business_name: identity.business_name,
           owner_name: identity.owner_name,
           alert_phone: identity.alert_phone,
+          carrier_verification_phone: identity.verification_phone,
           alert_email: identity.alert_email,
           service_area: identity.service_area,
+          ideal_job: identity.ideal_job,
+          trade: servicesConfig.selected_trade,
           operating_hours: servicesConfig.operating_hours,
           buffer_time: servicesConfig.buffer_time,
           domain_route: setup.domain_name || setup.domain_choice,
           services_overview: servicesText,
           google_business_profile: setup.gbp_link || "None",
+          gbp_admin_invite_sent: setup.gbp_admin_invite_sent ? "Yes" : "No",
+          existing_website: setup.existing_website_url || "None",
+          hosting_cms_logins: setup.hosting_cms_logins || "None",
           intake_summary: emailBodyText,
         }),
       });

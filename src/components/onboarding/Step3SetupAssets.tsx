@@ -2,7 +2,7 @@
 
 import { useState, useRef } from "react";
 import { IntakeFormData, UploadedAsset } from "./types";
-import { Globe, UploadCloud, Image as ImageIcon, X, ArrowLeft, Send, Sparkles } from "lucide-react";
+import { Globe, UploadCloud, Image as ImageIcon, X, ArrowLeft, Send, Sparkles, CheckSquare, Square, KeyRound } from "lucide-react";
 
 interface Step3Props {
   data: IntakeFormData;
@@ -86,14 +86,113 @@ export default function Step3SetupAssets({
       <div className="border-b border-white/10 pb-5">
         <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-full border border-primary-red/30 bg-primary-red/10 text-primary-red text-xs font-bold tracking-widest uppercase mb-3">
           <span className="w-1.5 h-1.5 rounded-full bg-primary-red animate-pulse" />
-          SECTION 03 // LAUNCH &amp; ASSETS
+          SECTION 03 // ACCESS, DOMAIN &amp; ASSETS
         </div>
         <h2 className="font-display text-3xl sm:text-4xl text-white-text tracking-tight uppercase leading-none">
           SETUP ACCESS &amp; <span className="font-brush text-primary-red text-3xl sm:text-4xl normal-case tracking-wider inline-block">Brand</span> ASSETS
         </h2>
         <p className="text-sm text-muted-text mt-2 leading-relaxed">
-          Choose your domain deployment route and upload optional logo or field photos for your landing hub.
+          Connect your Google Business Profile, select your launch domain route, and provide existing website or asset details.
         </p>
+      </div>
+
+      {/* Google Business Profile Module + Admin Invite Checkbox */}
+      <div className="p-5 sm:p-6 bg-[#08080A] border border-white/10 rounded-xl space-y-4">
+        <div className="flex items-center justify-between border-b border-white/5 pb-3">
+          <div className="flex items-center gap-2">
+            <Globe className="w-4 h-4 text-primary-red" />
+            <h3 className="text-xs uppercase tracking-wider text-white-text font-bold">
+              GOOGLE BUSINESS PROFILE (GBP) &amp; REVIEWS
+            </h3>
+          </div>
+          <span className="text-[10px] text-primary-red font-mono">[REVIEW ENGINE]</span>
+        </div>
+
+        <div className="space-y-2">
+          <label className="text-xs font-bold uppercase tracking-wider text-muted-text block">
+            GOOGLE BUSINESS PROFILE URL (OPTIONAL)
+          </label>
+          <input
+            type="url"
+            value={data.gbp_link}
+            onChange={(e) => onChange({ gbp_link: e.target.value })}
+            placeholder="https://g.page/r/your-google-profile/review or Google Maps URL"
+            className="w-full min-h-[48px] px-4 py-3 bg-[#050505] border border-white/10 rounded-xl text-white-text text-sm font-mono placeholder:text-white/20 focus:border-primary-red focus:ring-1 focus:ring-primary-red/40 outline-none"
+          />
+          <p className="text-xs text-muted-text">
+            Our automated post-job review pipeline directly syncs to this profile to stack 5-star reviews on autopilot.
+          </p>
+        </div>
+
+        {/* Checkbox: "I've sent an admin access invite" */}
+        <div
+          onClick={() => onChange({ gbp_admin_invite_sent: !data.gbp_admin_invite_sent })}
+          className={`p-3.5 rounded-xl border transition-all cursor-pointer flex items-start gap-3 select-none ${
+            data.gbp_admin_invite_sent
+              ? "bg-[#101014] border-primary-red/60 text-white-text"
+              : "bg-[#050505] border-white/10 text-muted-text hover:border-white/20"
+          }`}
+        >
+          <div className="mt-0.5 text-primary-red">
+            {data.gbp_admin_invite_sent ? (
+              <CheckSquare className="w-4 h-4" />
+            ) : (
+              <Square className="w-4 h-4 text-white/40" />
+            )}
+          </div>
+          <div className="text-xs space-y-0.5">
+            <span className="font-bold text-white-text block">
+              I&apos;ve sent an admin access invite
+            </span>
+            <span className="text-[11px] text-muted-text block">
+              Invite <strong className="text-white-text">hello@bookmoar.com</strong> as Manager on your Google Business Profile so we can wire review requests and auto-responses.
+            </span>
+          </div>
+        </div>
+      </div>
+
+      {/* Existing Website URL + Hosting/CMS Logins (Optional Section) */}
+      <div className="p-5 sm:p-6 bg-[#08080A] border border-white/10 rounded-xl space-y-4">
+        <div className="flex items-center justify-between border-b border-white/5 pb-3">
+          <div className="flex items-center gap-2">
+            <KeyRound className="w-4 h-4 text-primary-red" />
+            <h3 className="text-xs uppercase tracking-wider text-white-text font-bold">
+              EXISTING WEBSITE &amp; HOSTING/CMS LOGINS (OPTIONAL)
+            </h3>
+          </div>
+          <span className="text-[10px] text-muted-text font-mono">[MIGRATION &amp; REDIRECTS]</span>
+        </div>
+
+        <div className="space-y-4">
+          <div className="space-y-1.5">
+            <label className="text-xs uppercase tracking-wider text-muted-text font-bold block">
+              EXISTING WEBSITE URL
+            </label>
+            <input
+              type="text"
+              value={data.existing_website_url}
+              onChange={(e) => onChange({ existing_website_url: e.target.value })}
+              placeholder="e.g. https://www.apexmobiledetailing.com (leave blank if starting fresh)"
+              className="w-full min-h-[48px] px-4 py-3 bg-[#050505] border border-white/10 rounded-xl text-white-text text-sm font-sans placeholder:text-white/20 focus:border-primary-red focus:ring-1 focus:ring-primary-red/40 outline-none"
+            />
+          </div>
+
+          <div className="space-y-1.5">
+            <label className="text-xs uppercase tracking-wider text-muted-text font-bold block">
+              HOSTING / CMS LOGINS OR DELEGATION NOTES
+            </label>
+            <textarea
+              rows={2}
+              value={data.hosting_cms_logins}
+              onChange={(e) => onChange({ hosting_cms_logins: e.target.value })}
+              placeholder="e.g. GoDaddy / WordPress / Squarespace / Wix credentials or notes: 'I will delegate DNS or grant access once ready'"
+              className="w-full px-4 py-3 bg-[#050505] border border-white/10 rounded-xl text-white-text text-sm font-sans placeholder:text-white/20 focus:border-primary-red focus:ring-1 focus:ring-primary-red/40 outline-none resize-none"
+            />
+            <p className="text-[11px] text-muted-text">
+              Optional: We use this only to seamlessly redirect your old pages and point your domain without downtime.
+            </p>
+          </div>
+        </div>
       </div>
 
       {/* Domain Choice Module */}
@@ -102,7 +201,7 @@ export default function Step3SetupAssets({
           <div className="flex items-center gap-2">
             <Globe className="w-4 h-4 text-primary-red" />
             <h3 className="text-xs uppercase tracking-wider text-white-text font-bold">
-              DOMAIN DEPLOYMENT ROUTE <span className="text-primary-red">*</span>
+              LAUNCH DOMAIN SELECTION <span className="text-primary-red">*</span>
             </h3>
           </div>
           <span className="text-xs text-muted-text uppercase font-semibold">
@@ -208,27 +307,6 @@ export default function Step3SetupAssets({
             </div>
           </div>
         )}
-      </div>
-
-      {/* Google Business Profile Module */}
-      <div className="p-5 sm:p-6 bg-[#08080A] border border-white/10 rounded-xl space-y-2">
-        <label className="flex items-center justify-between text-xs font-bold uppercase tracking-wider text-muted-text">
-          <span className="text-white-text">GOOGLE BUSINESS PROFILE (GBP) LINK (OPTIONAL)</span>
-          <span className="text-[10px] text-primary-red font-mono">[REVIEW PIPELINE]</span>
-        </label>
-        <p className="text-xs text-muted-text">
-          Paste your Google Maps / review link. Our automated post-job review pipeline directly syncs to this profile.
-        </p>
-        <input
-          type="url"
-          value={data.gbp_link}
-          onChange={(e) => onChange({ gbp_link: e.target.value })}
-          placeholder="https://g.page/r/your-google-profile/review"
-          className="w-full min-h-[48px] px-4 py-3 bg-[#050505] border border-white/10 rounded-xl text-white-text text-sm font-mono placeholder:text-white/20 focus:border-primary-red focus:ring-1 focus:ring-primary-red/40 outline-none"
-        />
-        <div className="text-xs text-muted-text">
-          Leave blank if you don&apos;t have a verified listing yet; our team assists during setup.
-        </div>
       </div>
 
       {/* Asset Upload & Fallback Notice */}

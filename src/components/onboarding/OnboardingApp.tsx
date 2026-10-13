@@ -130,10 +130,13 @@ export default function OnboardingApp() {
         business_name: formData.business_name,
         owner_name: formData.owner_name,
         alert_phone: formData.alert_phone,
+        verification_phone: formData.verification_phone,
         alert_email: formData.alert_email,
         service_area: formData.service_area,
+        ideal_job: formData.ideal_job,
       },
       services_configuration: {
+        selected_trade: formData.selected_trade,
         total_services: formData.services.length,
         services: formData.services.map((s) => ({
           service_name: s.service_name,
@@ -154,6 +157,9 @@ export default function OnboardingApp() {
                 .slice(0, 20)}.bookmoar.com`,
         registrar_access_notes: formData.registrar_access_notes,
         gbp_link: formData.gbp_link,
+        gbp_admin_invite_sent: formData.gbp_admin_invite_sent,
+        existing_website_url: formData.existing_website_url,
+        hosting_cms_logins: formData.hosting_cms_logins,
         asset_count: formData.assets.length,
         assets: formData.assets.map((a) => ({
           name: a.name,
