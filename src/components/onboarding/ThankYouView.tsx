@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Phone, MessageSquare, Mail, CheckCircle2, ShieldCheck, ArrowLeft, Clock, Calendar, Printer } from "lucide-react";
+import { Phone, MessageSquare, Mail, CheckCircle2, ShieldCheck, ArrowLeft, Clock, Calendar, Printer, AlertCircle } from "lucide-react";
 import { IntakeSubmissionPayload } from "./types";
 
 interface ThankYouViewProps {
@@ -11,13 +11,20 @@ interface ThankYouViewProps {
 
 export default function ThankYouView({ intakeId, initialPayload }: ThankYouViewProps) {
   const [payload, setPayload] = useState<IntakeSubmissionPayload | null>(initialPayload || null);
+  const [emailDelivery, setEmailDelivery] = useState<{ sent: boolean; provider?: string; error?: string } | null>(null);
 
   useEffect(() => {
-    if (!payload && typeof window !== "undefined") {
+    if (typeof window !== "undefined") {
       try {
-        const stored = sessionStorage.getItem("bookmoar_last_intake");
-        if (stored) {
-          setPayload(JSON.parse(stored));
+        if (!payload) {
+          const stored = sessionStorage.getItem("bookmoar_last_intake");
+          if (stored) {
+            setPayload(JSON.parse(stored));
+          }
+        }
+        const deliveryStored = sessionStorage.getItem("bookmoar_email_delivery");
+        if (deliveryStored) {
+          setEmailDelivery(JSON.parse(deliveryStored));
         }
       } catch (e) {
         console.warn("Could not read stored intake from sessionStorage", e);
@@ -60,6 +67,24 @@ export default function ThankYouView({ intakeId, initialPayload }: ThankYouViewP
       {/* Main Container */}
       <main className="max-w-4xl mx-auto px-4 py-8 sm:py-14 space-y-8 relative z-10">
         
+        {/* Email delivery diagnostic banner if email dispatch did not confirm */}
+        {emailDelivery && !emailDelivery.sent && (
+          <div className="rounded-2xl border border-amber-500/40 bg-amber-500/10 p-5 text-xs text-amber-200 flex items-start gap-3.5 shadow-[0_0_25px_rgba(245,158,11,0.15)]">
+            <AlertCircle className="w-5 h-5 text-amber-400 shrink-0 mt-0.5" />
+            <div className="space-y-1.5 flex-1">
+              <span className="font-bold text-amber-300 uppercase tracking-wider block text-xs">
+                SERVER NOTICE: DIRECT EMAIL DISPATCH PENDING VERCEL CREDENTIALS
+              </span>
+              <p className="text-white/80 leading-relaxed text-xs">
+                Your intake specification is safely saved with reference ID <span className="font-mono text-white font-bold">{referenceId}</span>. The server recorded your submission, but automatic email forwarding to hello@bookmoar.com requires email credentials configured on Vercel (RESEND_API_KEY or SMTP credentials).
+              </p>
+              <p className="text-amber-300 font-medium text-xs">
+                To confirm setup immediately, please text or call Derek directly at <a href="tel:9193519505" className="underline font-bold text-white">(919) 351-9505</a>.
+              </p>
+            </div>
+          </div>
+        )}
+
         {/* Top Hero Thank You Card */}
         <div className="rounded-2xl border border-white/10 bg-[#0B0B0D] p-6 sm:p-10 shadow-2xl relative overflow-hidden text-center sm:text-left space-y-6">
           <div className="absolute top-0 right-0 w-[300px] h-[300px] rounded-full bg-primary-red/10 blur-[90px] pointer-events-none" />

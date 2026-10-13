@@ -184,15 +184,40 @@ export default function OnboardingApp() {
     // Keep loader active for realistic telemetry sequence (~3.5s)
     const minLoaderDelay = new Promise((resolve) => setTimeout(resolve, 3500));
 
-    // 1. Dispatch to local /api/intake which relays directly to hello@bookmoar.com
+    // 1. Dispatch to local /api/intake which relays to hello@bookmoar.com
+    let emailDeliveryResult: {
+      sent: boolean;
+      provider?: string;
+      error?: string;
+      attempts?: any[];
+    } = { sent: false };
+
     try {
-      await fetch("/api/intake", {
+      const apiRes = await fetch("/api/intake", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
       });
-      console.log("[INTAKE ROUTED] Sent intake payload to hello@bookmoar.com via /api/intake");
-    } catch (apiErr) {
+      const apiData = await apiRes.json();
+      if (apiRes.ok && apiData.email_sent) {
+        emailDeliveryResult = {
+          sent: true,
+          provider: apiData.delivery_provider,
+        };
+        console.log(`[INTAKE ROUTED] Sent intake payload via ${apiData.delivery_provider}`);
+      } else {
+        emailDeliveryResult = {
+          sent: false,
+          error: apiData.email_error || "Could not deliver notification email",
+          attempts: apiData.delivery_attempts,
+        };
+        console.warn("[INTAKE EMAIL DELIVERY WARNING]", apiData);
+      }
+    } catch (apiErr: any) {
+      emailDeliveryResult = {
+        sent: false,
+        error: apiErr.message || "Network error",
+      };
       console.warn("Could not route to /api/intake", apiErr);
     }
 
@@ -221,6 +246,7 @@ export default function OnboardingApp() {
     // Cache to sessionStorage for Thank You page reload resilience
     try {
       sessionStorage.setItem("bookmoar_last_intake", JSON.stringify(payload));
+      sessionStorage.setItem("bookmoar_email_delivery", JSON.stringify(emailDeliveryResult));
     } catch (e) {
       // sessionStorage quota or private mode
     }
