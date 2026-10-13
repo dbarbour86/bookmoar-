@@ -9,9 +9,9 @@ interface ProgressBarProps {
 }
 
 const STEPS = [
-  { step: 1, code: "01", label: "IDENTITY & ALERTS", shortLabel: "IDENTITY" },
-  { step: 2, code: "02", label: "SERVICES & PRICING", shortLabel: "SERVICES" },
-  { step: 3, code: "03", label: "ACCESS & ASSETS", shortLabel: "ASSETS" },
+  { step: 1, code: "01", label: "BUSINESS INFORMATION", shortLabel: "BUSINESS" },
+  { step: 2, code: "02", label: "YOUR SERVICES", shortLabel: "SERVICES" },
+  { step: 3, code: "03", label: "WEBSITE, LOGO & PHOTOS", shortLabel: "ASSETS" },
 ];
 
 export default function ProgressBar({

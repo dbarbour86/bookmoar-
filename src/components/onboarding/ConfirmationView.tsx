@@ -94,7 +94,7 @@ export default function ConfirmationView({ payload, onStartNew }: ConfirmationVi
           {/* Identity Block */}
           <div className="p-5 bg-[#050505] border border-white/5 rounded-xl space-y-3">
             <span className="text-primary-red font-bold text-xs uppercase tracking-wider block border-b border-white/5 pb-2">
-              [01] CLIENT &amp; DISPATCH IDENTITY
+              [01] BUSINESS INFORMATION
             </span>
             <div className="space-y-2 text-muted-text">
               <p>
@@ -105,8 +105,20 @@ export default function ConfirmationView({ payload, onStartNew }: ConfirmationVi
                 <strong className="text-muted-text uppercase text-[10px] block">Primary Owner:</strong>
                 <span className="text-white-text">{business_identity.owner_name}</span>
               </p>
+              {business_identity.business_address && (
+                <p>
+                  <strong className="text-muted-text uppercase text-[10px] block">Business Address:</strong>
+                  <span className="text-white-text">{business_identity.business_address}</span>
+                </p>
+              )}
+              {business_identity.public_phone && (
+                <p>
+                  <strong className="text-muted-text uppercase text-[10px] block">Public Customer Phone:</strong>
+                  <span className="text-white-text font-mono">{business_identity.public_phone}</span>
+                </p>
+              )}
               <p>
-                <strong className="text-muted-text uppercase text-[10px] block">SMS Alert Phone:</strong>
+                <strong className="text-muted-text uppercase text-[10px] block">Lead Alert Text Mobile:</strong>
                 <span className="text-primary-red font-bold font-mono">{business_identity.alert_phone}</span>
               </p>
               <p>
@@ -114,7 +126,7 @@ export default function ConfirmationView({ payload, onStartNew }: ConfirmationVi
                 <span className="text-white-text font-bold font-mono">{business_identity.verification_phone || business_identity.alert_phone}</span>
               </p>
               <p>
-                <strong className="text-muted-text uppercase text-[10px] block">Appointment Email:</strong>
+                <strong className="text-muted-text uppercase text-[10px] block">Notification Email:</strong>
                 <span className="text-white-text">{business_identity.alert_email}</span>
               </p>
               <p>
@@ -123,7 +135,7 @@ export default function ConfirmationView({ payload, onStartNew }: ConfirmationVi
               </p>
               {business_identity.ideal_job && (
                 <p>
-                  <strong className="text-muted-text uppercase text-[10px] block">Ideal Booked Job:</strong>
+                  <strong className="text-muted-text uppercase text-[10px] block">Jobs Wanted More Of:</strong>
                   <span className="text-white-text italic">&quot;{business_identity.ideal_job}&quot;</span>
                 </p>
               )}
@@ -133,27 +145,39 @@ export default function ConfirmationView({ payload, onStartNew }: ConfirmationVi
           {/* Schedule Rules */}
           <div className="p-5 bg-[#050505] border border-white/5 rounded-xl space-y-3">
             <span className="text-primary-red font-bold text-xs uppercase tracking-wider block border-b border-white/5 pb-2">
-              [02] SCHEDULE &amp; DOMAIN ENGINE
+              [02] SERVICES &amp; ONLINE SETUP
             </span>
             <div className="space-y-2 text-muted-text">
               <p>
                 <strong className="text-muted-text uppercase text-[10px] block">Trade Focus:</strong>
                 <span className="text-primary-red font-bold uppercase">{services_configuration.selected_trade || "Auto Detailing"}</span>
               </p>
+              {services_configuration.booking_preference && (
+                <p>
+                  <strong className="text-muted-text uppercase text-[10px] block">Booking Preference:</strong>
+                  <span className="text-white-text font-bold">{services_configuration.booking_preference}</span>
+                </p>
+              )}
               <p>
-                <strong className="text-muted-text uppercase text-[10px] block">Operating Hours:</strong>
+                <strong className="text-muted-text uppercase text-[10px] block">Business Hours:</strong>
                 <span className="text-white-text font-bold">{services_configuration.operating_hours}</span>
               </p>
               <p>
-                <strong className="text-muted-text uppercase text-[10px] block">Drive / Buffer Time:</strong>
+                <strong className="text-muted-text uppercase text-[10px] block">Travel / Buffer Time:</strong>
                 <span className="text-primary-red font-bold">{services_configuration.buffer_time}</span>
               </p>
+              {services_configuration.excluded_services && (
+                <p>
+                  <strong className="text-muted-text uppercase text-[10px] block">Excluded Services:</strong>
+                  <span className="text-white-text">{services_configuration.excluded_services}</span>
+                </p>
+              )}
               <p>
                 <strong className="text-muted-text uppercase text-[10px] block">Domain Route:</strong>
                 <span className="text-white-text">
                   {setup_and_assets.domain_choice === "own_domain"
                     ? `Custom: ${setup_and_assets.domain_name}`
-                    : "Fast-Launch Book Moar Subdomain"}
+                    : "Fast-Launch Book Moar Link"}
                 </span>
               </p>
               <p>
@@ -175,6 +199,12 @@ export default function ConfirmationView({ payload, onStartNew }: ConfirmationVi
                 <p>
                   <strong className="text-muted-text uppercase text-[10px] block">Existing Website:</strong>
                   <span className="text-white-text">{setup_and_assets.existing_website_url}</span>
+                </p>
+              )}
+              {setup_and_assets.existing_booking_software && (
+                <p>
+                  <strong className="text-muted-text uppercase text-[10px] block">Current Software:</strong>
+                  <span className="text-white-text">{setup_and_assets.existing_booking_software}</span>
                 </p>
               )}
               <p>

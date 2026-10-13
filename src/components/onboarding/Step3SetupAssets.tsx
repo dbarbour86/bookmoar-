@@ -2,7 +2,21 @@
 
 import { useState, useRef } from "react";
 import { IntakeFormData, UploadedAsset } from "./types";
-import { Globe, UploadCloud, Image as ImageIcon, X, ArrowLeft, Send, Sparkles, CheckSquare, Square, KeyRound } from "lucide-react";
+import {
+  Globe,
+  UploadCloud,
+  Image as ImageIcon,
+  X,
+  ArrowLeft,
+  Send,
+  Sparkles,
+  CheckSquare,
+  Square,
+  KeyRound,
+  Share2,
+  CalendarCheck,
+  FileText,
+} from "lucide-react";
 
 interface Step3Props {
   data: IntakeFormData;
@@ -86,127 +100,138 @@ export default function Step3SetupAssets({
       <div className="border-b border-white/10 pb-5">
         <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-full border border-primary-red/30 bg-primary-red/10 text-primary-red text-xs font-bold tracking-widest uppercase mb-3">
           <span className="w-1.5 h-1.5 rounded-full bg-primary-red animate-pulse" />
-          SECTION 03 // ACCESS, DOMAIN &amp; ASSETS
+          SECTION 03 // WEBSITE, LOGO &amp; PHOTOS
         </div>
         <h2 className="font-display text-3xl sm:text-4xl text-white-text tracking-tight uppercase leading-none">
-          SETUP ACCESS &amp; <span className="font-brush text-primary-red text-3xl sm:text-4xl normal-case tracking-wider inline-block">Brand</span> ASSETS
+          WEBSITE, <span className="font-brush text-primary-red text-3xl sm:text-4xl normal-case tracking-wider inline-block">Logo</span> &amp; PHOTOS
         </h2>
         <p className="text-sm text-muted-text mt-2 leading-relaxed">
-          Connect your Google Business Profile, select your launch domain route, and provide existing website or asset details.
+          Connect your Google Business Profile, upload your logo and photos, and let us know your online setup.
         </p>
       </div>
 
-      {/* Google Business Profile Module + Admin Invite Checkbox */}
+      {/* Online Profiles: Website, GBP & Social Links */}
       <div className="p-5 sm:p-6 bg-[#08080A] border border-white/10 rounded-xl space-y-4">
         <div className="flex items-center justify-between border-b border-white/5 pb-3">
           <div className="flex items-center gap-2">
             <Globe className="w-4 h-4 text-primary-red" />
             <h3 className="text-xs uppercase tracking-wider text-white-text font-bold">
-              GOOGLE BUSINESS PROFILE (GBP) &amp; REVIEWS
+              CURRENT ONLINE PROFILES (WEBSITE &amp; SOCIAL)
             </h3>
           </div>
-          <span className="text-[10px] text-primary-red font-mono">[REVIEW ENGINE]</span>
-        </div>
-
-        <div className="space-y-2">
-          <label className="text-xs font-bold uppercase tracking-wider text-muted-text block">
-            GOOGLE BUSINESS PROFILE URL (OPTIONAL)
-          </label>
-          <input
-            type="url"
-            value={data.gbp_link}
-            onChange={(e) => onChange({ gbp_link: e.target.value })}
-            placeholder="https://g.page/r/your-google-profile/review or Google Maps URL"
-            className="w-full min-h-[48px] px-4 py-3 bg-[#050505] border border-white/10 rounded-xl text-white-text text-sm font-mono placeholder:text-white/20 focus:border-primary-red focus:ring-1 focus:ring-primary-red/40 outline-none"
-          />
-          <p className="text-xs text-muted-text">
-            Our automated post-job review pipeline directly syncs to this profile to stack 5-star reviews on autopilot.
-          </p>
-        </div>
-
-        {/* Checkbox: "I've sent an admin access invite" */}
-        <div
-          onClick={() => onChange({ gbp_admin_invite_sent: !data.gbp_admin_invite_sent })}
-          className={`p-3.5 rounded-xl border transition-all cursor-pointer flex items-start gap-3 select-none ${
-            data.gbp_admin_invite_sent
-              ? "bg-[#101014] border-primary-red/60 text-white-text"
-              : "bg-[#050505] border-white/10 text-muted-text hover:border-white/20"
-          }`}
-        >
-          <div className="mt-0.5 text-primary-red">
-            {data.gbp_admin_invite_sent ? (
-              <CheckSquare className="w-4 h-4" />
-            ) : (
-              <Square className="w-4 h-4 text-white/40" />
-            )}
-          </div>
-          <div className="text-xs space-y-0.5">
-            <span className="font-bold text-white-text block">
-              I&apos;ve sent an admin access invite
-            </span>
-            <span className="text-[11px] text-muted-text block">
-              Invite <strong className="text-white-text">hello@bookmoar.com</strong> as Manager on your Google Business Profile so we can wire review requests and auto-responses.
-            </span>
-          </div>
-        </div>
-      </div>
-
-      {/* Existing Website URL + Hosting/CMS Logins (Optional Section) */}
-      <div className="p-5 sm:p-6 bg-[#08080A] border border-white/10 rounded-xl space-y-4">
-        <div className="flex items-center justify-between border-b border-white/5 pb-3">
-          <div className="flex items-center gap-2">
-            <KeyRound className="w-4 h-4 text-primary-red" />
-            <h3 className="text-xs uppercase tracking-wider text-white-text font-bold">
-              EXISTING WEBSITE &amp; HOSTING/CMS LOGINS (OPTIONAL)
-            </h3>
-          </div>
-          <span className="text-[10px] text-muted-text font-mono">[MIGRATION &amp; REDIRECTS]</span>
+          <span className="text-[10px] text-muted-text font-mono">[DIGITAL PRESENCE]</span>
         </div>
 
         <div className="space-y-4">
+          {/* Current Website URL */}
           <div className="space-y-1.5">
             <label className="text-xs uppercase tracking-wider text-muted-text font-bold block">
-              EXISTING WEBSITE URL
+              CURRENT WEBSITE URL <span className="text-muted-text font-normal">(OPTIONAL)</span>
             </label>
             <input
               type="text"
-              value={data.existing_website_url}
+              value={data.existing_website_url || ""}
               onChange={(e) => onChange({ existing_website_url: e.target.value })}
               placeholder="e.g. https://www.apexmobiledetailing.com (leave blank if starting fresh)"
               className="w-full min-h-[48px] px-4 py-3 bg-[#050505] border border-white/10 rounded-xl text-white-text text-sm font-sans placeholder:text-white/20 focus:border-primary-red focus:ring-1 focus:ring-primary-red/40 outline-none"
             />
           </div>
 
-          <div className="space-y-1.5">
-            <label className="text-xs uppercase tracking-wider text-muted-text font-bold block">
-              HOSTING / CMS LOGINS OR DELEGATION NOTES
+          {/* Google Business Profile URL */}
+          <div className="space-y-2">
+            <label className="text-xs font-bold uppercase tracking-wider text-muted-text block">
+              GOOGLE BUSINESS PROFILE (GBP) LINK <span className="text-muted-text font-normal">(OPTIONAL)</span>
             </label>
-            <textarea
-              rows={2}
-              value={data.hosting_cms_logins}
-              onChange={(e) => onChange({ hosting_cms_logins: e.target.value })}
-              placeholder="e.g. GoDaddy / WordPress / Squarespace / Wix credentials or notes: 'I will delegate DNS or grant access once ready'"
-              className="w-full px-4 py-3 bg-[#050505] border border-white/10 rounded-xl text-white-text text-sm font-sans placeholder:text-white/20 focus:border-primary-red focus:ring-1 focus:ring-primary-red/40 outline-none resize-none"
+            <input
+              type="url"
+              value={data.gbp_link}
+              onChange={(e) => onChange({ gbp_link: e.target.value })}
+              placeholder="https://g.page/r/your-google-profile/review or Google Maps URL"
+              className="w-full min-h-[48px] px-4 py-3 bg-[#050505] border border-white/10 rounded-xl text-white-text text-sm font-sans placeholder:text-white/20 focus:border-primary-red focus:ring-1 focus:ring-primary-red/40 outline-none"
             />
-            <p className="text-[11px] text-muted-text">
-              Optional: We use this only to seamlessly redirect your old pages and point your domain without downtime.
+            <p className="text-xs text-muted-text">
+              We connect your review automations directly to this link so happy customers leave 5-star reviews on Google.
+            </p>
+
+            {/* Checkbox: "I've sent an admin access invite" */}
+            <div
+              onClick={() => onChange({ gbp_admin_invite_sent: !data.gbp_admin_invite_sent })}
+              className={`p-3.5 rounded-xl border transition-all cursor-pointer flex items-start gap-3 select-none mt-2 ${
+                data.gbp_admin_invite_sent
+                  ? "bg-[#101014] border-primary-red/60 text-white-text"
+                  : "bg-[#050505] border-white/10 text-muted-text hover:border-white/20"
+              }`}
+            >
+              <div className="mt-0.5 text-primary-red">
+                {data.gbp_admin_invite_sent ? (
+                  <CheckSquare className="w-4 h-4" />
+                ) : (
+                  <Square className="w-4 h-4 text-white/40" />
+                )}
+              </div>
+              <div className="text-xs space-y-0.5">
+                <span className="font-bold text-white-text block">
+                  I&apos;ve sent an admin access invite
+                </span>
+                <span className="text-[11px] text-muted-text block">
+                  Optional: Invite <strong className="text-white-text">hello@bookmoar.com</strong> as Manager on your Google Business Profile so we can wire automated review requests.
+                </span>
+              </div>
+            </div>
+          </div>
+
+          {/* Facebook / Social Media Links */}
+          <div className="space-y-1.5">
+            <label className="flex items-center gap-1.5 text-xs uppercase tracking-wider text-muted-text font-bold">
+              <Share2 className="w-3.5 h-3.5 text-primary-red" />
+              FACEBOOK / SOCIAL MEDIA LINKS <span className="text-muted-text font-normal">(OPTIONAL)</span>
+            </label>
+            <input
+              type="text"
+              value={data.social_links || ""}
+              onChange={(e) => onChange({ social_links: e.target.value })}
+              placeholder="e.g. facebook.com/apexdetailing, instagram.com/apexdetailing"
+              className="w-full min-h-[48px] px-4 py-3 bg-[#050505] border border-white/10 rounded-xl text-white-text text-sm font-sans placeholder:text-white/20 focus:border-primary-red focus:ring-1 focus:ring-primary-red/40 outline-none"
+            />
+            <p className="text-xs text-muted-text">
+              We link your social profiles in the site header and footer for extra local credibility.
             </p>
           </div>
         </div>
       </div>
 
-      {/* Domain Choice Module */}
+      {/* Existing Booking Software (If Any) */}
+      <div className="p-5 sm:p-6 bg-[#08080A] border border-white/10 rounded-xl space-y-3">
+        <div className="flex items-center justify-between border-b border-white/5 pb-3">
+          <div className="flex items-center gap-2">
+            <CalendarCheck className="w-4 h-4 text-primary-red" />
+            <h3 className="text-xs uppercase tracking-wider text-white-text font-bold">
+              EXISTING BOOKING SOFTWARE <span className="text-muted-text font-normal">(IF ANY)</span>
+            </h3>
+          </div>
+          <span className="text-[10px] text-muted-text font-mono">[CALENDAR SYNC]</span>
+        </div>
+        <p className="text-xs text-muted-text">
+          Do you currently use software like Housecall Pro, Jobber, Square, Calendly, or Google Calendar?
+        </p>
+        <input
+          type="text"
+          value={data.existing_booking_software || ""}
+          onChange={(e) => onChange({ existing_booking_software: e.target.value })}
+          placeholder="e.g. Housecall Pro, Jobber, Square, Google Calendar, or None"
+          className="w-full min-h-[48px] px-4 py-3 bg-[#050505] border border-white/10 rounded-xl text-white-text text-sm font-sans placeholder:text-white/20 focus:border-primary-red focus:ring-1 focus:ring-primary-red/40 outline-none"
+        />
+      </div>
+
+      {/* Domain Launch Module */}
       <div className="p-5 sm:p-6 bg-[#08080A] border border-white/10 rounded-xl space-y-4">
         <div className="flex items-center justify-between border-b border-white/5 pb-3">
           <div className="flex items-center gap-2">
             <Globe className="w-4 h-4 text-primary-red" />
             <h3 className="text-xs uppercase tracking-wider text-white-text font-bold">
-              LAUNCH DOMAIN SELECTION <span className="text-primary-red">*</span>
+              WEBSITE DOMAIN PREFERENCE <span className="text-primary-red">*</span>
             </h3>
           </div>
-          <span className="text-xs text-muted-text uppercase font-semibold">
-            DNS SYSTEM
-          </span>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -222,7 +247,7 @@ export default function Step3SetupAssets({
           >
             <div className="flex items-center justify-between">
               <span className="text-xs font-bold text-white-text uppercase tracking-wider">
-                OPTION B: FAST-LAUNCH SUBDOMAIN
+                OPTION A: FAST-LAUNCH BOOK MOAR LINK
               </span>
               <span
                 className={`w-4 h-4 rounded-full border flex items-center justify-center ${
@@ -235,7 +260,7 @@ export default function Step3SetupAssets({
               </span>
             </div>
             <p className="text-xs text-muted-text mt-2.5 leading-relaxed">
-              Launch immediately today with zero DNS delays. We deploy onto a high-speed Book Moar domain.
+              Launch immediately with zero domain setup required on your end. We host it directly on high-speed servers.
             </p>
             <div className="mt-3.5 p-2.5 bg-[#050505] border border-white/5 rounded-lg text-xs font-mono text-primary-red flex items-center gap-1.5">
               <span className="text-muted-text text-[10px] uppercase">PREVIEW:</span>
@@ -255,7 +280,7 @@ export default function Step3SetupAssets({
           >
             <div className="flex items-center justify-between">
               <span className="text-xs font-bold text-white-text uppercase tracking-wider">
-                OPTION A: I ALREADY OWN A DOMAIN
+                OPTION B: YOUR CUSTOM DOMAIN
               </span>
               <span
                 className={`w-4 h-4 rounded-full border flex items-center justify-center ${
@@ -268,40 +293,39 @@ export default function Step3SetupAssets({
               </span>
             </div>
             <p className="text-xs text-muted-text mt-2.5 leading-relaxed">
-              Connect your existing domain (GoDaddy, Namecheap, Cloudflare). We provide 1-click A/CNAME instructions.
+              Use your existing or purchased domain (e.g. yourbusiness.com). We will provide simple DNS instructions or assist directly.
             </p>
             <div className="mt-3.5 p-2.5 bg-[#050505] border border-white/5 rounded-lg text-xs text-muted-text flex items-center gap-1.5">
-              <span>CUSTOM DOMAIN ROUTING</span>
+              <KeyRound className="w-3.5 h-3.5 text-primary-red shrink-0" />
+              <span>We handle DNS pointing assistance</span>
             </div>
           </button>
         </div>
 
-        {/* Revealed Inputs if Option A selected */}
         {data.domain_choice === "own_domain" && (
-          <div className="p-4 bg-[#050505] border border-primary-red/30 rounded-xl space-y-4">
+          <div className="p-4 bg-[#050505] border border-white/10 rounded-xl space-y-3 mt-3">
             <div className="space-y-1.5">
-              <label className="text-xs uppercase tracking-wider text-white-text font-bold block">
-                EXISTING DOMAIN NAME <span className="text-primary-red">*</span>
+              <label className="text-xs uppercase tracking-wider text-muted-text font-bold block">
+                CUSTOM DOMAIN NAME <span className="text-primary-red">*</span>
               </label>
               <input
                 type="text"
-                required={data.domain_choice === "own_domain"}
+                required
                 value={data.domain_name}
                 onChange={(e) => onChange({ domain_name: e.target.value })}
-                placeholder="e.g. www.apexmobiledetailing.com"
+                placeholder="e.g. apexmobiledetailing.com"
                 className="w-full min-h-[48px] px-4 py-3 bg-[#0B0B0D] border border-white/10 rounded-xl text-white-text text-sm font-mono focus:border-primary-red focus:ring-1 focus:ring-primary-red/40 outline-none"
               />
             </div>
-
             <div className="space-y-1.5">
-              <label className="text-xs uppercase tracking-wider text-white-text font-bold block">
-                REGISTRAR / DNS NOTES (OPTIONAL)
+              <label className="text-xs uppercase tracking-wider text-muted-text font-bold block">
+                DOMAIN REGISTRAR / HOSTING ACCESS (OPTIONAL)
               </label>
               <input
                 type="text"
-                value={data.registrar_access_notes}
-                onChange={(e) => onChange({ registrar_access_notes: e.target.value })}
-                placeholder="e.g. Registered on GoDaddy; invite hello@bookmoar.com as delegate or send records"
+                value={data.hosting_cms_logins || data.registrar_access_notes || ""}
+                onChange={(e) => onChange({ hosting_cms_logins: e.target.value, registrar_access_notes: e.target.value })}
+                placeholder="e.g. Registered on GoDaddy; will delegate access or send DNS records"
                 className="w-full min-h-[48px] px-4 py-3 bg-[#0B0B0D] border border-white/10 rounded-xl text-white-text text-sm focus:border-primary-red focus:ring-1 focus:ring-primary-red/40 outline-none"
               />
             </div>
@@ -315,7 +339,7 @@ export default function Step3SetupAssets({
           <div className="flex items-center gap-2">
             <UploadCloud className="w-4 h-4 text-primary-red" />
             <h3 className="text-xs uppercase tracking-wider text-white-text font-bold">
-              BRAND ASSETS &amp; PHOTOS (OPTIONAL)
+              LOGO &amp; BUSINESS PHOTOS <span className="text-muted-text font-normal">(OPTIONAL)</span>
             </h3>
           </div>
           <span className="text-xs text-muted-text">
@@ -417,6 +441,28 @@ export default function Step3SetupAssets({
         )}
       </div>
 
+      {/* Additional Notes or Special Requests */}
+      <div className="p-5 sm:p-6 bg-[#08080A] border border-white/10 rounded-xl space-y-3">
+        <div className="flex items-center justify-between border-b border-white/5 pb-3">
+          <div className="flex items-center gap-2">
+            <FileText className="w-4 h-4 text-primary-red" />
+            <h3 className="text-xs uppercase tracking-wider text-white-text font-bold">
+              ADDITIONAL NOTES OR SPECIAL REQUESTS <span className="text-muted-text font-normal">(OPTIONAL)</span>
+            </h3>
+          </div>
+        </div>
+        <p className="text-xs text-muted-text">
+          Anything else we should know when setting up your site, scheduling rules, or message automations?
+        </p>
+        <textarea
+          rows={3}
+          value={data.notes_and_requests || ""}
+          onChange={(e) => onChange({ notes_and_requests: e.target.value })}
+          placeholder="e.g. Please emphasize that we offer weekend emergency calls, or make sure our 10% senior discount is mentioned..."
+          className="w-full px-4 py-3 bg-[#050505] border border-white/10 rounded-xl text-white-text text-sm font-sans placeholder:text-white/20 focus:border-primary-red focus:ring-1 focus:ring-primary-red/40 outline-none resize-none"
+        />
+      </div>
+
       {/* Action Footer */}
       <div className="pt-5 border-t border-white/10 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
         <button
@@ -426,7 +472,7 @@ export default function Step3SetupAssets({
           className="min-h-[50px] px-6 py-3.5 border border-white/10 hover:border-primary-red/50 hover:text-primary-red text-muted-text rounded-xl text-xs uppercase tracking-wider font-bold flex items-center justify-center gap-2 cursor-pointer transition-all"
         >
           <ArrowLeft className="w-4 h-4 stroke-[3]" />
-          <span>BACK TO SERVICES</span>
+          <span>BACK TO YOUR SERVICES</span>
         </button>
 
         <button

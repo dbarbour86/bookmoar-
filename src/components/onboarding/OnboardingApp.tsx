@@ -14,6 +14,7 @@ import Step3SetupAssets from "./Step3SetupAssets";
 import TerminalLoader from "./TerminalLoader";
 import ConfirmationView from "./ConfirmationView";
 import ThankYouView from "./ThankYouView";
+import { ShieldCheck } from "lucide-react";
 
 /**
  * CONFIGURABLE WEBHOOK ENDPOINT
@@ -124,15 +125,18 @@ export default function OnboardingApp() {
     const payload: IntakeSubmissionPayload = {
       intake_id: intakeId,
       timestamp: new Date().toISOString(),
-      system_version: "bookmoar-v4.2-brutalist-intake",
+      system_version: "bookmoar-v4.2-intake",
       source: "client_onboarding_portal",
       business_identity: {
         business_name: formData.business_name,
         owner_name: formData.owner_name,
+        business_address: formData.business_address,
+        public_phone: formData.public_phone,
         alert_phone: formData.alert_phone,
         verification_phone: formData.verification_phone,
         alert_email: formData.alert_email,
         service_area: formData.service_area,
+        business_hours: formData.business_hours || formData.operating_hours,
         ideal_job: formData.ideal_job,
       },
       services_configuration: {
@@ -143,7 +147,10 @@ export default function OnboardingApp() {
           duration_mins: s.duration_mins,
           price_or_deposit: s.price_or_deposit,
         })),
-        operating_hours: formData.operating_hours,
+        excluded_services: formData.excluded_services,
+        booking_preference: formData.booking_preference,
+        inquiry_instructions: formData.inquiry_instructions,
+        operating_hours: formData.operating_hours || formData.business_hours,
         buffer_time: formData.buffer_time,
       },
       setup_and_assets: {
@@ -159,6 +166,9 @@ export default function OnboardingApp() {
         gbp_link: formData.gbp_link,
         gbp_admin_invite_sent: formData.gbp_admin_invite_sent,
         existing_website_url: formData.existing_website_url,
+        social_links: formData.social_links,
+        existing_booking_software: formData.existing_booking_software,
+        notes_and_requests: formData.notes_and_requests,
         hosting_cms_logins: formData.hosting_cms_logins,
         asset_count: formData.assets.length,
         assets: formData.assets.map((a) => ({
@@ -263,7 +273,7 @@ export default function OnboardingApp() {
                 <div>
                   <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-primary-red/30 bg-primary-red/10 text-primary-red text-xs font-bold tracking-widest uppercase mb-3">
                     <span className="w-1.5 h-1.5 rounded-full bg-primary-red animate-pulse" />
-                    CLIENT ONBOARDING SYSTEM
+                    CLIENT ONBOARDING
                   </div>
                   <h1 className="font-display text-4xl sm:text-5xl md:text-6xl text-white-text tracking-tight uppercase leading-[0.9]">
                     BOOK <span className="font-brush text-primary-red text-4xl sm:text-5xl md:text-6xl normal-case tracking-wider inline-block -rotate-2">Moar</span> INTAKE
@@ -271,13 +281,13 @@ export default function OnboardingApp() {
                 </div>
 
                 <div className="bg-[#101014] border border-white/5 rounded-xl p-3.5 text-left sm:text-right text-xs hidden sm:block">
-                  <span className="text-muted-text text-[10px] block font-bold uppercase tracking-wider">CLEARANCE:</span>
+                  <span className="text-muted-text text-[10px] block font-bold uppercase tracking-wider">PACKAGE:</span>
                   <span className="text-primary-red font-display text-lg tracking-wider">FOUNDING PARTNER</span>
                 </div>
               </div>
 
               <p className="text-sm sm:text-base text-muted-text mt-3 max-w-2xl leading-relaxed">
-                Complete this 3-step technical intake to establish your lead dispatch phone, booking calendar, and custom trade assets.
+                Complete this 3-step intake so we can build your booking calendar, automated lead alerts, and custom trade website.
               </p>
             </div>
 
@@ -318,15 +328,12 @@ export default function OnboardingApp() {
               )}
             </div>
 
-            {/* Bottom Support Telemetry */}
-            <footer className="pt-4 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-muted-text">
-              <div>BOOK MOAR AUTONOMOUS ONBOARDING ENGINE &copy; 2026</div>
-              <div className="flex items-center gap-3">
-                <span>SMS DISPATCH READY</span>
-                <span>&bull;</span>
-                <span>ZERO CONTRACT</span>
-                <span>&bull;</span>
-                <span className="text-primary-red font-medium">STAGING SLA: &lt; 10 MINS</span>
+            {/* Bottom Support Footer */}
+            <footer className="pt-4 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-muted-text">
+              <div>BOOK MOAR &copy; 2026</div>
+              <div className="flex items-center gap-2 text-white/70">
+                <ShieldCheck className="w-4 h-4 text-primary-red" />
+                <span>Your information is securely submitted to Book Moar.</span>
               </div>
             </footer>
           </main>

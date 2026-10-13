@@ -27,32 +27,38 @@ NEW BOOK MOAR CLIENT ONBOARDING INTAKE
 Intake ID: ${intakeId}
 Timestamp: ${timestamp}
 
-[1] CLIENT & DISPATCH IDENTITY:
+[1] BUSINESS INFORMATION:
 - Business Name: ${identity.business_name || "N/A"}
-- Primary Owner: ${identity.owner_name || "N/A"}
-- Alert Mobile (SMS): ${identity.alert_phone || "N/A"}
+- Primary Owner / Manager: ${identity.owner_name || "N/A"}
+- Business Address: ${identity.business_address || "N/A"}
+- Public Phone (For Customers): ${identity.public_phone || "N/A"}
+- Where to Text New Lead Alerts: ${identity.alert_phone || "N/A"}
 - Carrier Verification Phone: ${identity.verification_phone || "N/A"}
-- Alert Email: ${identity.alert_email || "N/A"}
-- Service Area & Radius: ${identity.service_area || "N/A"}
-- Ideal Booked Job: ${identity.ideal_job || "N/A"}
+- Notification Email: ${identity.alert_email || "N/A"}
+- Business Hours: ${identity.business_hours || servicesConfig.operating_hours || "N/A"}
+- Service Area (Cities or ZIPs): ${identity.service_area || "N/A"}
+- Jobs Wanted More Of: ${identity.ideal_job || "None specified"}
 
-[2] CORE SERVICES & SCHEDULING:
+[2] YOUR SERVICES & BOOKING RULES:
 - Selected Trade: ${servicesConfig.selected_trade || "N/A"}
-- Operating Hours: ${servicesConfig.operating_hours || "N/A"}
-- Buffer Time: ${servicesConfig.buffer_time || "N/A"}
+- Appointment / Estimate Preference: ${servicesConfig.booking_preference || "N/A"}
+- Buffer / Travel Time: ${servicesConfig.buffer_time || "N/A"}
+- Services They Do NOT Offer: ${servicesConfig.excluded_services || "None"}
+- Special Inquiry Instructions: ${servicesConfig.inquiry_instructions || "None"}
 - Configured Services (${servicesList.length}):
 ${servicesText || "  None provided"}
 
-[3] DOMAIN, GBP & ACCESS ASSETS:
-- Domain Choice: ${setup.domain_choice || "N/A"}
-- Domain Name / Subdomain: ${setup.domain_name || "N/A"}
-- Registrar Notes: ${setup.registrar_access_notes || "N/A"}
+[3] WEBSITE, LOGO & PHOTOS:
+- Current Website URL: ${setup.existing_website_url || "N/A"}
 - Google Business Profile (GBP): ${setup.gbp_link || "N/A"}
 - GBP Admin Invite Sent: ${setup.gbp_admin_invite_sent ? "YES" : "NO"}
-- Existing Website URL: ${setup.existing_website_url || "N/A"}
-- Hosting / CMS Logins: ${setup.hosting_cms_logins || "N/A"}
-- Assets Staged: ${setup.asset_count || 0} files
-- Template Fallback: ${setup.used_template_fallback ? "Yes" : "No"}
+- Facebook / Social Media Links: ${setup.social_links || "N/A"}
+- Existing Booking Software: ${setup.existing_booking_software || "None"}
+- Launch Domain Choice: ${setup.domain_choice || "N/A"}
+- Domain Name / Subdomain: ${setup.domain_name || "N/A"}
+- Domain / Hosting Access Notes: ${setup.hosting_cms_logins || setup.registrar_access_notes || "N/A"}
+- Logo / Photos Uploaded: ${setup.asset_count || 0} files
+- Additional Notes or Special Requests: ${setup.notes_and_requests || "None"}
 ---------------------------------------
 `;
 
@@ -60,6 +66,7 @@ ${servicesText || "  None provided"}
       intakeId,
       business: identity.business_name,
       owner: identity.owner_name,
+      publicPhone: identity.public_phone,
       alertPhone: identity.alert_phone,
       verificationPhone: identity.verification_phone,
       email: identity.alert_email,
@@ -107,20 +114,28 @@ ${servicesText || "  None provided"}
           intake_id: intakeId,
           business_name: identity.business_name,
           owner_name: identity.owner_name,
-          alert_phone: identity.alert_phone,
+          business_address: identity.business_address,
+          public_phone: identity.public_phone,
+          lead_alert_phone: identity.alert_phone,
           carrier_verification_phone: identity.verification_phone,
           alert_email: identity.alert_email,
+          business_hours: identity.business_hours || servicesConfig.operating_hours,
           service_area: identity.service_area,
-          ideal_job: identity.ideal_job,
+          jobs_wanted_more_of: identity.ideal_job,
           trade: servicesConfig.selected_trade,
-          operating_hours: servicesConfig.operating_hours,
+          booking_preference: servicesConfig.booking_preference,
           buffer_time: servicesConfig.buffer_time,
-          domain_route: setup.domain_name || setup.domain_choice,
+          excluded_services: servicesConfig.excluded_services,
+          inquiry_instructions: servicesConfig.inquiry_instructions,
           services_overview: servicesText,
+          existing_website: setup.existing_website_url || "None",
           google_business_profile: setup.gbp_link || "None",
           gbp_admin_invite_sent: setup.gbp_admin_invite_sent ? "Yes" : "No",
-          existing_website: setup.existing_website_url || "None",
-          hosting_cms_logins: setup.hosting_cms_logins || "None",
+          social_links: setup.social_links || "None",
+          existing_booking_software: setup.existing_booking_software || "None",
+          domain_route: setup.domain_name || setup.domain_choice,
+          hosting_cms_logins: setup.hosting_cms_logins || setup.registrar_access_notes || "None",
+          additional_notes: setup.notes_and_requests || "None",
           intake_summary: emailBodyText,
         }),
       });

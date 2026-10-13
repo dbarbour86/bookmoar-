@@ -2,7 +2,21 @@
 
 import { useState } from "react";
 import { IntakeFormData, ServiceItem } from "./types";
-import { Plus, Trash2, Calendar, Layers, ArrowLeft, ArrowRight, AlertCircle, Sparkles, Clock, DollarSign } from "lucide-react";
+import {
+  Plus,
+  Trash2,
+  Calendar,
+  Layers,
+  ArrowLeft,
+  ArrowRight,
+  AlertCircle,
+  Sparkles,
+  DollarSign,
+  Clock,
+  Ban,
+  HelpCircle,
+  CheckCircle,
+} from "lucide-react";
 
 interface Step2Props {
   data: IntakeFormData;
@@ -12,6 +26,29 @@ interface Step2Props {
 }
 
 const BUFFER_OPTIONS = ["0 mins", "15 mins", "30 mins", "45 mins"];
+
+const BOOKING_PREFERENCES = [
+  {
+    id: "arrival_window",
+    label: "Arrival Window (Recommended)",
+    desc: "e.g. 2-hour arrival block (8-10 AM, 1-3 PM)",
+  },
+  {
+    id: "exact_time",
+    label: "Exact Time Booking",
+    desc: "Customer selects specific start time (e.g. 10:00 AM sharp)",
+  },
+  {
+    id: "in_person_quote",
+    label: "In-Person Estimate First",
+    desc: "Book a free on-site walkthrough / estimate inspection",
+  },
+  {
+    id: "phone_quote",
+    label: "Phone Consultation First",
+    desc: "Quick 15-minute diagnostic or phone scoping call",
+  },
+];
 
 interface TradePresetDef {
   key: string;
@@ -24,97 +61,97 @@ const TRADE_PRESETS: TradePresetDef[] = [
     key: "detailing",
     name: "Auto Detailing",
     services: [
-      { id: "p1", service_name: "Signature Exterior Wash & Gloss Sealant", price_or_deposit: "$99" },
-      { id: "p2", service_name: "Full Interior Deep Steam Extraction Detail", price_or_deposit: "$189" },
-      { id: "p3", service_name: "Complete In & Out Reset + Ceramic Guard", price_or_deposit: "$279" },
+      { id: "p1", service_name: "Signature Exterior Wash & Gloss Sealant", price_or_deposit: "$99", duration_mins: 60 },
+      { id: "p2", service_name: "Full Interior Deep Steam Extraction Detail", price_or_deposit: "$189", duration_mins: 120 },
+      { id: "p3", service_name: "Complete In & Out Reset + Ceramic Guard", price_or_deposit: "$279", duration_mins: 180 },
     ],
   },
   {
     key: "pressureWashing",
     name: "Pressure Washing",
     services: [
-      { id: "p1", service_name: "Driveway & Sidewalk Surface Wash", price_or_deposit: "$199" },
-      { id: "p2", service_name: "Whole-Home Soft Wash Exterior", price_or_deposit: "$349" },
-      { id: "p3", service_name: "Deck / Fence Deep Cleaning & Prep", price_or_deposit: "$249" },
+      { id: "p1", service_name: "Driveway & Sidewalk Surface Wash", price_or_deposit: "$199", duration_mins: 90 },
+      { id: "p2", service_name: "Whole-Home Soft Wash Exterior", price_or_deposit: "$349", duration_mins: 150 },
+      { id: "p3", service_name: "Deck / Fence Deep Cleaning & Prep", price_or_deposit: "$249", duration_mins: 120 },
     ],
   },
   {
     key: "roofing",
     name: "Roofing",
     services: [
-      { id: "p1", service_name: "Roof Inspection & Storm Damage Assessment", price_or_deposit: "Free Estimate ($0)" },
-      { id: "p2", service_name: "Emergency Roof Leak Repair & Flashing", price_or_deposit: "$350 - $750" },
-      { id: "p3", service_name: "Full Shingle / Metal Roof Replacement", price_or_deposit: "Insurance / Retail Quote" },
+      { id: "p1", service_name: "Roof Inspection & Storm Damage Assessment", price_or_deposit: "Free Estimate ($0)", duration_mins: 45 },
+      { id: "p2", service_name: "Emergency Roof Leak Repair & Flashing", price_or_deposit: "$350 - $750", duration_mins: 120 },
+      { id: "p3", service_name: "Full Shingle / Metal Roof Replacement", price_or_deposit: "Insurance / Retail Quote", duration_mins: 60 },
     ],
   },
   {
     key: "pestControl",
     name: "Pest Control",
     services: [
-      { id: "p1", service_name: "Quarterly Perimeter Defense Treatment", price_or_deposit: "$125 / visit" },
-      { id: "p2", service_name: "Termite Inspection & Barrier Treatment", price_or_deposit: "$199" },
-      { id: "p3", service_name: "Rodent Exclusion & Attic Inspection", price_or_deposit: "$250" },
+      { id: "p1", service_name: "Quarterly Perimeter Defense Treatment", price_or_deposit: "$125 / visit", duration_mins: 45 },
+      { id: "p2", service_name: "Termite Inspection & Barrier Treatment", price_or_deposit: "$199", duration_mins: 90 },
+      { id: "p3", service_name: "Rodent Exclusion & Attic Inspection", price_or_deposit: "$250", duration_mins: 60 },
     ],
   },
   {
     key: "hvac",
     name: "HVAC",
     services: [
-      { id: "p1", service_name: "Heating & AC Diagnostic Inspection", price_or_deposit: "$89 diagnostic fee" },
-      { id: "p2", service_name: "21-Point Seasonal Tune-Up & Coil Clean", price_or_deposit: "$129" },
-      { id: "p3", service_name: "Complete HVAC System Replacement", price_or_deposit: "Free In-Home Quote" },
+      { id: "p1", service_name: "Heating & AC Diagnostic Inspection", price_or_deposit: "$89 diagnostic fee", duration_mins: 60 },
+      { id: "p2", service_name: "21-Point Seasonal Tune-Up & Coil Clean", price_or_deposit: "$129", duration_mins: 75 },
+      { id: "p3", service_name: "Complete HVAC System Replacement", price_or_deposit: "Free In-Home Quote", duration_mins: 60 },
     ],
   },
   {
     key: "plumbing",
     name: "Plumbing",
     services: [
-      { id: "p1", service_name: "Drain Clearing & Video Camera Inspection", price_or_deposit: "$149" },
-      { id: "p2", service_name: "Water Heater Flush & Diagnostic Service", price_or_deposit: "$129" },
-      { id: "p3", service_name: "Emergency Pipe Leak Repair / Fixture Replacement", price_or_deposit: "$189+" },
+      { id: "p1", service_name: "Drain Clearing & Video Camera Inspection", price_or_deposit: "$149", duration_mins: 60 },
+      { id: "p2", service_name: "Water Heater Flush & Diagnostic Service", price_or_deposit: "$129", duration_mins: 60 },
+      { id: "p3", service_name: "Emergency Pipe Leak Repair / Fixture Replacement", price_or_deposit: "$189+", duration_mins: 90 },
     ],
   },
   {
     key: "electrical",
     name: "Electrical",
     services: [
-      { id: "p1", service_name: "Electrical Troubleshooting & Safety Inspection", price_or_deposit: "$99" },
-      { id: "p2", service_name: "Panel Upgrade & EV Home Charger Install", price_or_deposit: "$650 - $1,200" },
-      { id: "p3", service_name: "Recessed Lighting & Fixture Installation", price_or_deposit: "$150 / fixture" },
+      { id: "p1", service_name: "Electrical Troubleshooting & Safety Inspection", price_or_deposit: "$99", duration_mins: 60 },
+      { id: "p2", service_name: "Panel Upgrade & EV Home Charger Install", price_or_deposit: "$650 - $1,200", duration_mins: 180 },
+      { id: "p3", service_name: "Recessed Lighting & Fixture Installation", price_or_deposit: "$150 / fixture", duration_mins: 120 },
     ],
   },
   {
     key: "lawnCare",
     name: "Lawn Care & Landscaping",
     services: [
-      { id: "p1", service_name: "Routine Weekly Mow, Edge & Blow", price_or_deposit: "$45 - $65 / visit" },
-      { id: "p2", service_name: "Seasonal Property Clean-Up & Fresh Mulch", price_or_deposit: "$295 - $550" },
-      { id: "p3", service_name: "Core Aeration, Overseeding & Fertilizer", price_or_deposit: "$199" },
+      { id: "p1", service_name: "Routine Weekly Mow, Edge & Blow", price_or_deposit: "$45 - $65 / visit", duration_mins: 45 },
+      { id: "p2", service_name: "Seasonal Property Clean-Up & Fresh Mulch", price_or_deposit: "$295 - $550", duration_mins: 180 },
+      { id: "p3", service_name: "Core Aeration, Overseeding & Fertilizer", price_or_deposit: "$199", duration_mins: 90 },
     ],
   },
   {
     key: "generalContracting",
     name: "General Contracting",
     services: [
-      { id: "p1", service_name: "On-Site Remodel Consultation & Scope Review", price_or_deposit: "Free Consultation ($0)" },
-      { id: "p2", service_name: "Kitchen & Bathroom Renovation Consultation", price_or_deposit: "Free Estimate ($0)" },
-      { id: "p3", service_name: "Deck, Patio & Structural Carpentry", price_or_deposit: "Custom Quote" },
+      { id: "p1", service_name: "On-Site Remodel Consultation & Scope Review", price_or_deposit: "Free Consultation ($0)", duration_mins: 60 },
+      { id: "p2", service_name: "Kitchen & Bathroom Renovation Consultation", price_or_deposit: "Free Estimate ($0)", duration_mins: 60 },
+      { id: "p3", service_name: "Deck, Patio & Structural Carpentry", price_or_deposit: "Custom Quote", duration_mins: 60 },
     ],
   },
   {
     key: "salonBarbershop",
     name: "Salon/Barbershop",
     services: [
-      { id: "p1", service_name: "Signature Haircut, Wash & Beard Sculpt", price_or_deposit: "$45" },
-      { id: "p2", service_name: "Full Color, Balayage & Blowout", price_or_deposit: "$150+" },
-      { id: "p3", service_name: "Deep Conditioning Scalp Treatment", price_or_deposit: "$65" },
+      { id: "p1", service_name: "Signature Haircut, Wash & Beard Sculpt", price_or_deposit: "$45", duration_mins: 45 },
+      { id: "p2", service_name: "Full Color, Balayage & Blowout", price_or_deposit: "$150+", duration_mins: 120 },
+      { id: "p3", service_name: "Deep Conditioning Scalp Treatment", price_or_deposit: "$65", duration_mins: 45 },
     ],
   },
   {
     key: "custom",
     name: "Custom (Blank)",
     services: [
-      { id: "p1", service_name: "", price_or_deposit: "" },
+      { id: "p1", service_name: "", price_or_deposit: "", duration_mins: 60 },
     ],
   },
 ];
@@ -136,6 +173,7 @@ export default function Step2Services({ data, onChange, onNext, onBack }: Step2P
       id: `srv-${Date.now()}-${Math.random().toString(36).slice(2, 6)}`,
       service_name: "",
       price_or_deposit: "",
+      duration_mins: 60,
     };
     onChange({ services: [...data.services, newService] });
   };
@@ -167,14 +205,14 @@ export default function Step2Services({ data, onChange, onNext, onBack }: Step2P
 
   const errors = {
     services: !validateServices() ? "All service rows must have a valid title and price or description." : null,
-    operating_hours: !data.operating_hours.trim() ? "Business hours are required." : null,
+    booking_preference: !data.booking_preference ? "Please choose an appointment or estimate preference." : null,
   };
 
-  const isValid = !errors.services && !errors.operating_hours;
+  const isValid = !errors.services && !errors.booking_preference;
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setTouched({ services: true, operating_hours: true });
+    setTouched({ services: true, booking_preference: true });
     if (isValid) {
       onNext();
     }
@@ -186,11 +224,11 @@ export default function Step2Services({ data, onChange, onNext, onBack }: Step2P
       <div className="border-b border-white/10 pb-5">
         <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-full border border-primary-red/30 bg-primary-red/10 text-primary-red text-xs font-bold tracking-widest uppercase mb-3">
           <span className="w-1.5 h-1.5 rounded-full bg-primary-red animate-pulse" />
-          SECTION 02 // SERVICES &amp; PRICING
+          SECTION 02 // YOUR SERVICES
         </div>
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
           <h2 className="font-display text-3xl sm:text-4xl text-white-text tracking-tight uppercase leading-none">
-            CORE SERVICES &amp; <span className="font-brush text-primary-red text-3xl sm:text-4xl normal-case tracking-wider inline-block">Pricing</span> MENU
+            YOUR <span className="font-brush text-primary-red text-3xl sm:text-4xl normal-case tracking-wider inline-block">Services</span> &amp; PRICING
           </h2>
           <div className="flex items-center gap-1.5 text-xs text-muted-text bg-[#101014] px-3.5 py-1.5 rounded-full border border-white/5 w-fit">
             <Layers className="w-3.5 h-3.5 text-primary-red" />
@@ -204,7 +242,7 @@ export default function Step2Services({ data, onChange, onNext, onBack }: Step2P
           Select your trade preset below to pre-fill typical offerings, or edit and add unlimited custom service rows.
         </p>
 
-        {/* 10-Trade Presets Expanded Selector */}
+        {/* 10-Trade Presets Selector */}
         <div className="mt-4 p-4 sm:p-5 bg-[#08080A] border border-white/10 rounded-xl space-y-3">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2 text-xs text-white-text font-bold">
@@ -240,7 +278,7 @@ export default function Step2Services({ data, onChange, onNext, onBack }: Step2P
       <div className="space-y-3.5">
         <div className="flex items-center justify-between">
           <span className="text-xs uppercase font-bold text-muted-text tracking-wider">
-            CONFIGURED SERVICES ({data.services.length})
+            MAIN SERVICES OFFERED ({data.services.length})
           </span>
           <span className="text-[11px] text-muted-text">
             Add as many services as you offer. No limit.
@@ -276,10 +314,10 @@ export default function Step2Services({ data, onChange, onNext, onBack }: Step2P
               )}
             </div>
 
-            {/* Inputs Grid: Service Name + Price / Description */}
+            {/* Inputs Grid: Service Name + Price + Duration */}
             <div className="grid grid-cols-1 md:grid-cols-12 gap-3.5">
               {/* Service Name */}
-              <div className="md:col-span-7 space-y-1.5">
+              <div className="md:col-span-6 space-y-1.5">
                 <label className="text-xs uppercase tracking-wider text-muted-text font-bold block">
                   SERVICE NAME <span className="text-primary-red">*</span>
                 </label>
@@ -294,10 +332,10 @@ export default function Step2Services({ data, onChange, onNext, onBack }: Step2P
               </div>
 
               {/* Price / Description */}
-              <div className="md:col-span-5 space-y-1.5">
+              <div className="md:col-span-4 space-y-1.5">
                 <label className="flex items-center gap-1 text-xs uppercase tracking-wider text-muted-text font-bold">
                   <DollarSign className="w-3.5 h-3.5 text-primary-red" />
-                  PRICE OR DESCRIPTION <span className="text-primary-red">*</span>
+                  STARTING PRICE OR DESCRIPTION <span className="text-primary-red">*</span>
                 </label>
                 <input
                   type="text"
@@ -306,6 +344,24 @@ export default function Step2Services({ data, onChange, onNext, onBack }: Step2P
                   onChange={(e) => handleServiceChange(index, "price_or_deposit", e.target.value)}
                   placeholder="e.g. $149 or $89 diagnostic + parts or Free Estimate"
                   className="w-full min-h-[48px] px-4 py-3 bg-[#050505] border border-white/10 rounded-xl text-white-text text-sm font-sans placeholder:text-white/20 focus:border-primary-red focus:ring-1 focus:ring-primary-red/40 outline-none transition-all"
+                />
+              </div>
+
+              {/* Typical Duration */}
+              <div className="md:col-span-2 space-y-1.5">
+                <label className="flex items-center gap-1 text-xs uppercase tracking-wider text-muted-text font-bold">
+                  <Clock className="w-3.5 h-3.5 text-primary-red" />
+                  DURATION
+                </label>
+                <input
+                  type="text"
+                  value={srv.duration_mins ? `${srv.duration_mins}m` : ""}
+                  onChange={(e) => {
+                    const parsed = parseInt(e.target.value.replace(/\D/g, "")) || 0;
+                    handleServiceChange(index, "duration_mins", parsed);
+                  }}
+                  placeholder="e.g. 60m"
+                  className="w-full min-h-[48px] px-3 py-3 bg-[#050505] border border-white/10 rounded-xl text-white-text text-sm font-sans placeholder:text-white/20 focus:border-primary-red focus:ring-1 focus:ring-primary-red/40 outline-none transition-all"
                 />
               </div>
             </div>
@@ -330,78 +386,132 @@ export default function Step2Services({ data, onChange, onNext, onBack }: Step2P
         )}
       </div>
 
-      {/* Business Hours (Required) & Buffer Configuration */}
+      {/* Appointment or Estimate Preferences */}
       <div className="p-5 sm:p-6 bg-[#08080A] border border-white/10 rounded-xl space-y-4">
-        <div className="flex items-center gap-2 border-b border-white/5 pb-3">
-          <Calendar className="w-4 h-4 text-primary-red" />
-          <h3 className="text-xs uppercase tracking-wider text-white-text font-bold">
-            BUSINESS HOURS &amp; SCHEDULE RULES
-          </h3>
+        <div className="flex items-center justify-between border-b border-white/5 pb-3">
+          <div className="flex items-center gap-2">
+            <Calendar className="w-4 h-4 text-primary-red" />
+            <h3 className="text-xs uppercase tracking-wider text-white-text font-bold">
+              APPOINTMENT OR ESTIMATE PREFERENCE <span className="text-primary-red">*</span>
+            </h3>
+          </div>
+          <span className="text-xs text-muted-text uppercase font-semibold">BOOKING STYLE</span>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-          {/* Business Hours (Required) */}
-          <div className="space-y-2">
-            <label className="text-xs uppercase tracking-wider text-muted-text font-bold block">
-              BUSINESS HOURS <span className="text-primary-red">*</span>
-            </label>
-            <input
-              type="text"
-              required
-              value={data.operating_hours}
-              onChange={(e) => onChange({ operating_hours: e.target.value })}
-              placeholder="e.g. Mon-Sat 8:00 AM - 6:00 PM"
-              className="w-full min-h-[48px] px-4 py-3 bg-[#050505] border border-white/10 rounded-xl text-white-text text-sm focus:border-primary-red focus:ring-1 focus:ring-primary-red/40 outline-none"
-            />
-            {/* Quick Hours Presets */}
-            <div className="flex flex-wrap gap-2 pt-1">
-              {["Mon-Fri 8am - 5pm", "Mon-Sat 8am - 6pm", "7 Days 7am - 7pm"].map((preset) => (
-                <button
-                  key={preset}
-                  type="button"
-                  onClick={() => onChange({ operating_hours: preset })}
-                  className="px-2.5 py-1 bg-[#101014] border border-white/5 hover:border-primary-red hover:text-white-text text-muted-text text-[11px] uppercase font-semibold rounded-lg transition-colors cursor-pointer"
-                >
-                  {preset}
-                </button>
-              ))}
-            </div>
-            {touched.operating_hours && errors.operating_hours && (
-              <p className="flex items-center gap-1 text-xs text-primary-red font-medium">
-                <AlertCircle className="w-3.5 h-3.5" />
-                {errors.operating_hours}
-              </p>
-            )}
-          </div>
+        <p className="text-xs text-muted-text">
+          How do you want customers to book with you on the site?
+        </p>
 
-          {/* Buffer Time Between Appointments */}
-          <div className="space-y-2">
-            <label className="text-xs uppercase tracking-wider text-muted-text font-bold block">
-              BUFFER TIME BETWEEN APPOINTMENTS
-            </label>
-            <p className="text-xs text-muted-text">
-              Drive time / vehicle reload time before the next client slot.
-            </p>
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 pt-1">
-              {BUFFER_OPTIONS.map((buffer) => {
-                const isSelected = data.buffer_time === buffer;
-                return (
-                  <button
-                    key={buffer}
-                    type="button"
-                    onClick={() => onChange({ buffer_time: buffer })}
-                    className={`min-h-[44px] px-2 py-2 rounded-xl border text-xs font-bold uppercase transition-all cursor-pointer ${
-                      isSelected
-                        ? "bg-primary-red text-white-text border-primary-red shadow-[0_0_15px_rgba(255,37,56,0.35)]"
-                        : "bg-[#050505] border-white/10 text-muted-text hover:text-white-text hover:border-white/20"
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          {BOOKING_PREFERENCES.map((pref) => {
+            const isSelected = data.booking_preference === pref.label;
+            return (
+              <button
+                key={pref.id}
+                type="button"
+                onClick={() => onChange({ booking_preference: pref.label })}
+                className={`p-4 rounded-xl border text-left transition-all cursor-pointer relative ${
+                  isSelected
+                    ? "bg-[#101014] border-primary-red shadow-[0_0_20px_rgba(255,37,56,0.25)]"
+                    : "bg-[#050505] border-white/10 hover:border-white/20 text-muted-text"
+                }`}
+              >
+                <div className="flex items-center justify-between">
+                  <span className={`text-xs font-bold uppercase tracking-wider ${isSelected ? "text-white-text" : "text-white-text/80"}`}>
+                    {pref.label}
+                  </span>
+                  <span
+                    className={`w-4 h-4 rounded-full border flex items-center justify-center ${
+                      isSelected ? "border-primary-red bg-primary-red" : "border-white/20"
                     }`}
                   >
-                    {buffer}
-                  </button>
-                );
-              })}
-            </div>
+                    {isSelected && <span className="w-1.5 h-1.5 bg-white rounded-full" />}
+                  </span>
+                </div>
+                <p className="text-xs text-muted-text mt-2 leading-relaxed">
+                  {pref.desc}
+                </p>
+              </button>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* Services They Do NOT Offer */}
+      <div className="p-5 sm:p-6 bg-[#08080A] border border-white/10 rounded-xl space-y-3">
+        <div className="flex items-center justify-between border-b border-white/5 pb-3">
+          <div className="flex items-center gap-2">
+            <Ban className="w-4 h-4 text-primary-red" />
+            <h3 className="text-xs uppercase tracking-wider text-white-text font-bold">
+              SERVICES YOU DO NOT OFFER <span className="text-muted-text font-normal">(OPTIONAL)</span>
+            </h3>
           </div>
+          <span className="text-[10px] text-muted-text font-mono">[LEAD FILTERING]</span>
+        </div>
+        <p className="text-xs text-muted-text">
+          List any services customers frequently ask for that you do NOT take on. We use this to screen out inquiries and protect your time.
+        </p>
+        <textarea
+          rows={2}
+          value={data.excluded_services || ""}
+          onChange={(e) => onChange({ excluded_services: e.target.value })}
+          placeholder="e.g. No paint correction, no commercial flat roofs, no gas appliance lines, no jobs over 30 miles away..."
+          className="w-full px-4 py-3 bg-[#050505] border border-white/10 rounded-xl text-white-text text-sm font-sans placeholder:text-white/20 focus:border-primary-red focus:ring-1 focus:ring-primary-red/40 outline-none resize-none"
+        />
+      </div>
+
+      {/* Special Instructions for Handling Inquiries */}
+      <div className="p-5 sm:p-6 bg-[#08080A] border border-white/10 rounded-xl space-y-3">
+        <div className="flex items-center justify-between border-b border-white/5 pb-3">
+          <div className="flex items-center gap-2">
+            <HelpCircle className="w-4 h-4 text-primary-red" />
+            <h3 className="text-xs uppercase tracking-wider text-white-text font-bold">
+              SPECIAL INSTRUCTIONS FOR HANDLING INQUIRIES <span className="text-muted-text font-normal">(OPTIONAL)</span>
+            </h3>
+          </div>
+          <span className="text-[10px] text-muted-text font-mono">[INQUIRY RULES]</span>
+        </div>
+        <p className="text-xs text-muted-text">
+          Any special questions we should ask or details you need from customers before booking?
+        </p>
+        <textarea
+          rows={2}
+          value={data.inquiry_instructions || ""}
+          onChange={(e) => onChange({ inquiry_instructions: e.target.value })}
+          placeholder="e.g. Always ask for photos of the area, verify water & power hookup on site, gate code needed, dog must be put away..."
+          className="w-full px-4 py-3 bg-[#050505] border border-white/10 rounded-xl text-white-text text-sm font-sans placeholder:text-white/20 focus:border-primary-red focus:ring-1 focus:ring-primary-red/40 outline-none resize-none"
+        />
+      </div>
+
+      {/* Buffer Time Configuration */}
+      <div className="p-5 sm:p-6 bg-[#08080A] border border-white/10 rounded-xl space-y-3">
+        <div className="flex items-center gap-2 border-b border-white/5 pb-3">
+          <Clock className="w-4 h-4 text-primary-red" />
+          <h3 className="text-xs uppercase tracking-wider text-white-text font-bold">
+            DRIVE TIME / BUFFER BETWEEN JOBS
+          </h3>
+        </div>
+        <p className="text-xs text-muted-text">
+          Automatic buffer added before and after appointments for travel and equipment reload.
+        </p>
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 pt-1">
+          {BUFFER_OPTIONS.map((buffer) => {
+            const isSelected = data.buffer_time === buffer;
+            return (
+              <button
+                key={buffer}
+                type="button"
+                onClick={() => onChange({ buffer_time: buffer })}
+                className={`min-h-[44px] px-2 py-2 rounded-xl border text-xs font-bold uppercase transition-all cursor-pointer ${
+                  isSelected
+                    ? "bg-primary-red text-white-text border-primary-red shadow-[0_0_15px_rgba(255,37,56,0.35)]"
+                    : "bg-[#050505] border-white/10 text-muted-text hover:text-white-text hover:border-white/20"
+                }`}
+              >
+                {buffer}
+              </button>
+            );
+          })}
         </div>
       </div>
 
@@ -413,14 +523,14 @@ export default function Step2Services({ data, onChange, onNext, onBack }: Step2P
           className="min-h-[50px] px-6 py-3.5 border border-white/10 hover:border-primary-red/50 hover:text-primary-red text-muted-text rounded-xl text-xs uppercase tracking-wider font-bold flex items-center justify-center gap-2 cursor-pointer transition-all"
         >
           <ArrowLeft className="w-4 h-4 stroke-[3]" />
-          <span>BACK TO IDENTITY</span>
+          <span>BACK TO BUSINESS INFORMATION</span>
         </button>
 
         <button
           type="submit"
           className="min-h-[50px] px-8 py-4 rounded-xl bg-primary-red hover:bg-[#e01c2e] text-white-text font-bold uppercase tracking-wider transition-all duration-300 shadow-[0_0_20px_rgba(255,37,56,0.3)] hover:shadow-[0_0_25px_rgba(255,37,56,0.55)] cursor-pointer flex items-center justify-center gap-2 text-sm"
         >
-          <span>CONTINUE TO DOMAIN &amp; ACCESS</span>
+          <span>CONTINUE TO WEBSITE &amp; ASSETS</span>
           <ArrowRight className="w-4 h-4 stroke-[3]" />
         </button>
       </div>
