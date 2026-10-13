@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Bebas_Neue, Permanent_Marker } from "next/font/google";
+import { Inter, Bebas_Neue, Permanent_Marker, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import BookingTrigger from "@/components/BookingTrigger";
 import Script from "next/script";
@@ -22,6 +22,13 @@ const permanentMarker = Permanent_Marker({
   variable: "--font-brush",
   subsets: ["latin"],
   weight: "400",
+  display: "swap",
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  variable: "--font-mono",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
   display: "swap",
 });
 
@@ -57,9 +64,13 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${bebasNeue.variable} ${permanentMarker.variable} h-full scroll-smooth antialiased`}
+      suppressHydrationWarning
+      className={`${inter.variable} ${bebasNeue.variable} ${permanentMarker.variable} ${jetbrainsMono.variable} h-full scroll-smooth antialiased`}
     >
-      <body className="min-h-full bg-brand-bg text-white-text font-sans selection:bg-primary-red selection:text-white-text">
+      <body
+        suppressHydrationWarning
+        className="min-h-full bg-brand-bg text-white-text font-sans selection:bg-primary-red selection:text-white-text"
+      >
         {children}
         <BookingTrigger />
 
