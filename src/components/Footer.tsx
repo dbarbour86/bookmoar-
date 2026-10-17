@@ -48,8 +48,9 @@ export default function Footer() {
               {[
                 { name: "Services", href: "/#services" },
                 { name: "How It Works", href: "/#how-it-works" },
+                { name: "Get Started", href: "/get-started" },
                 { name: "Results", href: "/#results" },
-                { name: "About", href: "/#about" },
+                { name: "About", href: "/about" },
               ].map((link, idx) => (
                 <li key={idx}>
                   <a

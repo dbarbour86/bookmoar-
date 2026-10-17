@@ -43,7 +43,7 @@ export default function FinalCTA() {
           transition={{ delay: 0.2 }}
           className="text-base sm:text-lg md:text-xl text-muted-text max-w-2xl mx-auto mt-6 leading-relaxed"
         >
-          Stop losing leads to slower competitors. Schedule a free strategy call and let's identify the fastest way to generate more bookings for your business.
+          You handle the work. Let’s make it easier for customers to reach you—and keep the next inquiry from slipping through the cracks. Choose your plan and we’ll take it from there. No sales call required.
         </motion.p>
 
         {/* Call to Action Button */}

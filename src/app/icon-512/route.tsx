@@ -1,33 +1,14 @@
-import { ImageResponse } from "next/og";
-
-export const runtime = "edge";
+import fs from "fs";
+import path from "path";
 
 export function GET() {
-  return new ImageResponse(
-    (
-      <div
-        style={{
-          fontSize: 270,
-          background: "#FF2538",
-          width: "100%",
-          height: "100%",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          color: "#F5F5F5",
-          borderRadius: "50%",
-          fontWeight: 900,
-          fontFamily: "system-ui, -apple-system, sans-serif",
-          letterSpacing: "-10px",
-          paddingBottom: "10px",
-        }}
-      >
-        BM
-      </div>
-    ),
-    {
-      width: 512,
-      height: 512,
-    }
-  );
+  const filePath = path.join(process.cwd(), "public", "icon-512.png");
+  const buffer = fs.readFileSync(filePath);
+
+  return new Response(buffer, {
+    headers: {
+      "Content-Type": "image/png",
+      "Cache-Control": "public, max-age=31536000, immutable",
+    },
+  });
 }

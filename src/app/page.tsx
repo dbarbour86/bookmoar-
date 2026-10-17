@@ -1,6 +1,5 @@
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
-import MetricsRow from "@/components/MetricsRow";
 import Services from "@/components/Services";
 import System from "@/components/System";
 import Process from "@/components/Process";
@@ -60,8 +59,26 @@ export default function Home() {
         {/* Section 1: Hero area and Phone dashboard */}
         <Hero />
 
-        {/* Hero metrics numbers */}
-        <MetricsRow />
+        {/* 
+          =============================================================================
+          HOMEPAGE STATISTICS STRIP (Temporarily removed until verified stats are ready)
+          -----------------------------------------------------------------------------
+          Preserved for future display when verified client statistics are confirmed.
+          To restore this section:
+            1. Import MetricsRow from "@/components/MetricsRow";
+            2. Pass verified metrics into:
+                 <MetricsRow
+                   metrics={[
+                     { number: "XX+", label: "VERIFIED STAT 1" },
+                     { number: "YY+", label: "VERIFIED STAT 2" },
+                     { number: "ZZ/7", label: "VERIFIED STAT 3" },
+                     { number: "5★", label: "CLIENT EXPERIENCE" },
+                   ]}
+                 />
+               right here between <Hero /> and <Services />.
+            3. Preview the design anytime locally at /stats-preview.
+          =============================================================================
+        */}
 
         {/* Section 2: Services grids and Feature Browser mockup */}
         <Services />

@@ -49,7 +49,7 @@ export default function Services() {
   ];
 
   return (
-    <section id="services" className="relative bg-brand-bg py-36 sm:py-48 overflow-hidden">
+    <section id="services" className="relative bg-brand-bg pt-12 pb-36 sm:pt-16 sm:pb-48 overflow-hidden">
       {/* Background Glows */}
       <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[600px] h-[600px] rounded-full bg-primary-red/5 blur-[120px] pointer-events-none" />
 
