@@ -46,7 +46,7 @@ export default function PrivacyPage() {
                 The personal information that you are asked to provide, and the reasons why you are asked to provide it, will be made clear to you at the point we ask you to provide your personal information.
               </p>
               <ul className="list-disc pl-5 space-y-2 mt-2">
-                <li><strong>Account & Booking Data:</strong> When you book a call or register an account, we may ask for your contact information, including items such as your name, business name, address, email address, and telephone number.</li>
+                <li><strong>Contact & Inquiry Data:</strong> When you reach out, we may ask for your contact information, including items such as your name, business name, address, email address, and telephone number.</li>
                 <li><strong>Payment Data:</strong> Payment details (e.g. credit card information) are collected and processed securely by our third-party payment processors (such as Stripe). We do not store your credit card numbers on our servers.</li>
                 <li><strong>Communications:</strong> If you contact us directly, we may receive additional information about you such as your name, email address, phone number, the contents of the message and/or attachments you may send us, and any other information you may choose to provide.</li>
               </ul>
@@ -83,7 +83,7 @@ export default function PrivacyPage() {
                 4. Third-Party Privacy Policies
               </h2>
               <p>
-                Book Moar's Privacy Policy does not apply to other advertisers or websites. Thus, we are advising you to consult the respective Privacy Policies of these third-party servers (such as Google Analytics, Stripe, or Cal.com) for more detailed information. It may include their practices and instructions about how to opt-out of certain options.
+                Book Moar's Privacy Policy does not apply to other advertisers or websites. Thus, we are advising you to consult the respective Privacy Policies of these third-party servers (such as Google Analytics or Stripe) for more detailed information. It may include their practices and instructions about how to opt-out of certain options.
               </p>
             </section>
 

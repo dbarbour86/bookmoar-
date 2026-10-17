@@ -40,28 +40,27 @@ export default async function Page({ params }: Props) {
 
   return (
     <>
-      {/* Product Onboarding Structured Data (JSON-LD) */}
+      {/* Service Structured Data (JSON-LD) */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({
             "@context": "https://schema.org",
-            "@type": "Product",
-            "name": `Book Moar ${nicheData.name} Lead Booking System`,
-            "image": `https://www.bookmoar.com${nicheData.image}`,
-            "description": nicheData.subheadline,
-            "offers": {
-              "@type": "Offer",
-              "price": nicheData.price.replace(/[^0-9]/g, ""), // extract digits e.g. 299
-              "priceCurrency": "USD",
-              "url": `https://www.bookmoar.com/${niche}`,
-              "priceValidUntil": "2027-12-31",
-              "availability": "https://schema.org/InStock"
+            "@type": "Service",
+            "name": `Book Moar ${nicheData.name} Website & Booking System`,
+            "serviceType": `${nicheData.industry} Website & Booking System`,
+            "description": `${nicheData.subheadline} Includes custom trade website, instant lead follow-up, and automated Google review requests. Introductory founding member rate: $97/month with a one-time $199 setup fee.`,
+            "provider": {
+              "@type": "ProfessionalService",
+              "name": "Book Moar",
+              "url": "https://www.bookmoar.com",
+              "telephone": "+1-919-351-9505"
             },
-            "brand": {
-              "@type": "Brand",
-              "name": "Book Moar"
-            }
+            "areaServed": {
+              "@type": "Country",
+              "name": "United States"
+            },
+            "url": `https://www.bookmoar.com/${niche}`
           })
         }}
       />

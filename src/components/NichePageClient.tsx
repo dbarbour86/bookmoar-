@@ -159,11 +159,16 @@ export default function NichePageClient({ nicheData }: NichePageClientProps) {
                   </div>
                 </div>
                 <div className="flex justify-between items-baseline border-t border-white/5 pt-2.5">
-                  <span className="text-[10px] font-bold text-muted-text uppercase tracking-wider">
-                    One-time Setup Fee
-                  </span>
+                  <div>
+                    <span className="text-[10px] font-bold text-muted-text uppercase tracking-wider block">
+                      One-time Setup Fee
+                    </span>
+                    <span className="text-[9px] text-muted-text/70 block">
+                      Due today at checkout
+                    </span>
+                  </div>
                   <span className="text-xs font-bold text-white-text uppercase">
-                    $199 setup
+                    $199 one-time
                   </span>
                 </div>
               </div>
