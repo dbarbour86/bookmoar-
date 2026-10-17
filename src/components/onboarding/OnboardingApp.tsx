@@ -313,7 +313,7 @@ export default function OnboardingApp() {
               </div>
 
               <p className="text-sm sm:text-base text-muted-text mt-3 max-w-2xl leading-relaxed">
-                Complete this 3-step intake so we can build your booking calendar, automated lead alerts, and custom trade website.
+                Complete this 3-step intake so I can build your booking calendar, automated lead alerts, and custom trade website.
               </p>
             </div>
 

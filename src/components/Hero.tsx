@@ -71,7 +71,7 @@ export default function Hero() {
               variants={itemVariants}
               className="text-base sm:text-lg md:text-xl text-muted-text max-w-xl mt-6 leading-relaxed"
             >
-              Premium websites, local SEO, Google reviews, and smart automations that help local service businesses book more customers on autopilot. Less chasing. More jobs. Moar revenue.
+              I build modern websites, local SEO, and simple follow-up automations that help you turn calls and messages into booked jobs. Less chasing. More jobs. Moar revenue.
             </motion.p>
 
             {/* CTA Buttons */}
@@ -124,7 +124,7 @@ export default function Hero() {
                   <div className="w-5 h-5 rounded-full bg-primary-red/10 border border-primary-red/30 flex items-center justify-center text-primary-red shrink-0">
                     <Check className="w-3.5 h-3.5" />
                   </div>
-                  5-star support
+                  Direct 1-on-1 support
                 </div>
               </div>
 

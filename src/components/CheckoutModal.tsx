@@ -103,8 +103,8 @@ export default function CheckoutModal({
                 </p>
                 <div className="bg-[#101014] border border-white/5 rounded-xl p-4 mt-6 text-xs text-white-text text-left max-w-md mx-auto space-y-2">
                   <p className="font-bold text-primary-red uppercase tracking-wider">Next Steps:</p>
-                  <p>1. We are auto-generating your staging environment database.</p>
-                  <p>2. A Book Moar integration specialist will call you at <span className="font-semibold text-white-text">{formData.phone}</span> in less than 10 minutes to setup your calendar and review links.</p>
+                  <p>1. Your spot is locked in. I've logged your contact info ({formData.phone || "your phone number"}).</p>
+                  <p>2. Head over to the 5-minute intake form at <a href="/onboarding" className="text-primary-red underline font-semibold">/onboarding</a> so I can get your trade details and start building your system.</p>
                 </div>
                 <button
                   onClick={onClose}

@@ -106,7 +106,7 @@ export default function Step3SetupAssets({
           WEBSITE, <span className="font-brush text-primary-red text-3xl sm:text-4xl normal-case tracking-wider inline-block">Logo</span> &amp; PHOTOS
         </h2>
         <p className="text-sm text-muted-text mt-2 leading-relaxed">
-          Connect your Google Business Profile, upload your logo and photos, and let us know your online setup.
+          Connect your Google Business Profile, upload your logo and photos, and let me know your preferred domain and setup.
         </p>
       </div>
 
@@ -150,7 +150,7 @@ export default function Step3SetupAssets({
               className="w-full min-h-[48px] px-4 py-3 bg-[#050505] border border-white/10 rounded-xl text-white-text text-sm font-sans placeholder:text-white/20 focus:border-primary-red focus:ring-1 focus:ring-primary-red/40 outline-none"
             />
             <p className="text-xs text-muted-text">
-              We connect your review automations directly to this link so happy customers leave 5-star reviews on Google.
+              I connect your review automations directly to this link so happy customers leave 5-star reviews on Google.
             </p>
 
             {/* Checkbox: "I've sent an admin access invite" */}
@@ -174,7 +174,7 @@ export default function Step3SetupAssets({
                   I&apos;ve sent an admin access invite
                 </span>
                 <span className="text-[11px] text-muted-text block">
-                  Optional: Invite <strong className="text-white-text">hello@bookmoar.com</strong> as Manager on your Google Business Profile so we can wire automated review requests.
+                  Optional: Invite <strong className="text-white-text">hello@bookmoar.com</strong> as Manager on your Google Business Profile so I can wire automated review requests.
                 </span>
               </div>
             </div>
@@ -194,7 +194,7 @@ export default function Step3SetupAssets({
               className="w-full min-h-[48px] px-4 py-3 bg-[#050505] border border-white/10 rounded-xl text-white-text text-sm font-sans placeholder:text-white/20 focus:border-primary-red focus:ring-1 focus:ring-primary-red/40 outline-none"
             />
             <p className="text-xs text-muted-text">
-              We link your social profiles in the site header and footer for extra local credibility.
+              I link your social profiles in the site header and footer for extra local credibility.
             </p>
           </div>
         </div>
@@ -260,7 +260,7 @@ export default function Step3SetupAssets({
               </span>
             </div>
             <p className="text-xs text-muted-text mt-2.5 leading-relaxed">
-              Launch immediately with zero domain setup required on your end. We host it directly on high-speed servers.
+              Launch immediately with zero domain setup required on your end. I host it directly on high-speed servers.
             </p>
             <div className="mt-3.5 p-2.5 bg-[#050505] border border-white/5 rounded-lg text-xs font-mono text-primary-red flex items-center gap-1.5">
               <span className="text-muted-text text-[10px] uppercase">PREVIEW:</span>
@@ -293,11 +293,11 @@ export default function Step3SetupAssets({
               </span>
             </div>
             <p className="text-xs text-muted-text mt-2.5 leading-relaxed">
-              Use your existing or purchased domain (e.g. yourbusiness.com). We will provide simple DNS instructions or assist directly.
+              Use your existing or purchased domain (e.g. yourbusiness.com). I will provide simple DNS instructions or assist directly.
             </p>
             <div className="mt-3.5 p-2.5 bg-[#050505] border border-white/5 rounded-lg text-xs text-muted-text flex items-center gap-1.5">
               <KeyRound className="w-3.5 h-3.5 text-primary-red shrink-0" />
-              <span>We handle DNS pointing assistance</span>
+              <span>I handle DNS pointing assistance</span>
             </div>
           </button>
         </div>
@@ -452,7 +452,7 @@ export default function Step3SetupAssets({
           </div>
         </div>
         <p className="text-xs text-muted-text">
-          Anything else we should know when setting up your site, scheduling rules, or message automations?
+          Anything else I should know when setting up your site, scheduling rules, or message automations?
         </p>
         <textarea
           rows={3}

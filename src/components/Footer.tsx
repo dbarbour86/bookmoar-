@@ -24,7 +24,7 @@ export default function Footer() {
             </a>
             
             <p className="text-sm text-muted-text leading-relaxed max-w-sm mb-6">
-              Websites, local visibility, reviews, and automation built to help local businesses book moar.
+              Websites, local visibility, reviews, and simple automations built by Derek in North Carolina to help local service businesses book moar.
             </p>
 
             {/* Status indicator */}

@@ -124,7 +124,7 @@ export default function Step1Identity({ data, onChange, onNext }: Step1Props) {
           BUSINESS <span className="font-brush text-primary-red text-3xl sm:text-4xl normal-case tracking-wider inline-block">Information</span>
         </h2>
         <p className="text-sm text-muted-text mt-2 leading-relaxed">
-          Tell us about your business so we can set up your booking calendar, automated lead alerts, and customer contact routing.
+          Share your business details so I can set up your booking calendar, automated lead alerts, and customer contact routing.
         </p>
       </div>
 
@@ -257,7 +257,7 @@ export default function Step1Identity({ data, onChange, onNext }: Step1Props) {
           <div className="flex items-center justify-between">
             <label className="flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-white-text">
               <MessageSquare className="w-3.5 h-3.5 text-primary-red" />
-              WHERE SHOULD WE TEXT NEW LEAD ALERTS? <span className="text-primary-red">*</span>
+              WHERE SHOULD I TEXT NEW LEAD ALERTS? <span className="text-primary-red">*</span>
             </label>
             {data.public_phone && (
               <button
@@ -324,7 +324,7 @@ export default function Step1Identity({ data, onChange, onNext }: Step1Props) {
             }`}
           />
           <p className="text-xs text-muted-text font-medium text-white/70">
-            We start carrier verification on day one — double-check this number.
+            I start carrier verification on day one — double-check this number.
           </p>
           {touched.verification_phone && errors.verification_phone && (
             <p className="flex items-center gap-1 text-xs text-primary-red font-medium">
@@ -478,7 +478,7 @@ export default function Step1Identity({ data, onChange, onNext }: Step1Props) {
             className="w-full min-h-[48px] px-4 py-3 bg-[#050505] border border-white/10 rounded-xl text-white-text text-sm placeholder:text-white/20 focus:border-primary-red focus:ring-1 focus:ring-primary-red/40 outline-none transition-all"
           />
           <p className="text-xs text-muted-text">
-            Helps our ad copy and booking recommendations highlight your highest-profit work.
+            Helps me highlight your highest-profit work across your booking pages.
           </p>
         </div>
       </div>

@@ -58,7 +58,7 @@ export default function Services() {
         {/* Section Heading */}
         <div className="text-center max-w-3xl mx-auto mb-20">
           <span className="text-xs font-bold text-primary-red uppercase tracking-widest">
-            WHAT WE DO
+            WHAT I BUILD FOR YOU
           </span>
           <h2 className="font-display text-5xl sm:text-6xl md:text-7xl font-normal text-white-text tracking-tight uppercase mt-3 leading-[0.85]">
             EVERYTHING YOU NEED TO <br />
@@ -146,7 +146,7 @@ export default function Services() {
                 HIGH-CONVERTING DESIGN
               </h3>
               <p className="text-sm text-muted-text mt-4 max-w-md leading-relaxed">
-                Most agencies build pretty layouts that fail to convert. We build websites engineered specifically to capture interest and turn random visitors into booked jobs.
+                Most agencies build pretty layouts that fail to convert. I build websites specifically to capture interest, answer questions fast, and turn visitors into booked jobs.
               </p>
 
               {/* Bullet list */}

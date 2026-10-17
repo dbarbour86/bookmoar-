@@ -107,10 +107,10 @@ export default function ThankYouView({ intakeId, initialPayload }: ThankYouViewP
 
           <div className="space-y-4 pt-2 text-muted-text text-sm sm:text-base leading-relaxed relative z-10">
             <p>
-              We know your business is your lifeblood, and trusting us to build and launch your client booking engine means everything to us. <strong className="text-white-text">You made the right call.</strong>
+              I know your business is your lifeblood, and trusting me to build and launch your booking system means everything. <strong className="text-white-text">You made the right call.</strong>
             </p>
             <p>
-              Our team has already received your intake specification at <span className="text-primary-red font-medium">hello@bookmoar.com</span>. We&apos;re already reviewing your details and putting your setup into motion.
+              I&apos;ve received your intake details at <span className="text-primary-red font-medium">hello@bookmoar.com</span>. I&apos;m reviewing your submission now and getting your build underway.
             </p>
           </div>
 
@@ -202,11 +202,11 @@ export default function ThankYouView({ intakeId, initialPayload }: ThankYouViewP
               <div className="flex items-center gap-2 text-primary-red font-display text-lg">
                 <span>01</span>
                 <span className="text-white-text text-xs font-sans font-bold uppercase tracking-wider">
-                  WE BUILD YOUR SYSTEM
+                  I BUILD YOUR SYSTEM
                 </span>
               </div>
               <p className="text-xs text-muted-text leading-relaxed">
-                Your booking site and follow-up system get built over the next 2 weeks. No work needed from you...just sit tight while we put it together. If we need anything, we&apos;ll contact you.
+                I build your booking site and follow-up automations over the next 2 weeks. No extra work needed on your end—just relax while I put everything in place. If I need any clarification, I&apos;ll reach out directly.
               </p>
             </div>
 
@@ -214,11 +214,11 @@ export default function ThankYouView({ intakeId, initialPayload }: ThankYouViewP
               <div className="flex items-center gap-2 text-primary-red font-display text-lg">
                 <span>02</span>
                 <span className="text-white-text text-xs font-sans font-bold uppercase tracking-wider">
-                  WE TEST IT ON YOUR PHONE
+                  WE TEST IT TOGETHER ON YOUR PHONE
                 </span>
               </div>
               <p className="text-xs text-muted-text leading-relaxed">
-                Before launch, we send a live test straight to your phone so you can watch a lead come in in real time...exactly what your customers will experience.
+                Before launch, I send a live test straight to your phone so you can see a simulated inquiry arrive in real time—giving you complete confidence in how it works.
               </p>
             </div>
 

@@ -28,7 +28,7 @@ export default function FoundingOfferBottom() {
 
           {/* Description Copy */}
           <p className="text-sm sm:text-base text-muted-text max-w-2xl leading-relaxed mb-8">
-            We're looking for our first <strong>five businesses</strong> to partner with. If you're one of the first five clients, you'll lock in our introductory pricing forever. Once all five spots are filled, pricing will increase. Founding clients are grandfathered in and keep their pricing for as long as they remain active.
+            I&apos;m looking for my first <strong>five businesses</strong> to partner with. If you&apos;re one of these first five clients, you&apos;ll lock in my introductory pricing forever. Once all five spots are filled, pricing will increase. As a founding client, your rate is locked in for as long as you stay active.
           </p>
 
           {/* Spots remaining indicator */}

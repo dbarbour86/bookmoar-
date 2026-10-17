@@ -449,7 +449,7 @@ export default function Step2Services({ data, onChange, onNext, onBack }: Step2P
           <span className="text-[10px] text-muted-text font-mono">[LEAD FILTERING]</span>
         </div>
         <p className="text-xs text-muted-text">
-          List any services customers frequently ask for that you do NOT take on. We use this to screen out inquiries and protect your time.
+          List any services customers frequently ask for that you do NOT take on. I configure your forms to screen these out and protect your time.
         </p>
         <textarea
           rows={2}
@@ -472,7 +472,7 @@ export default function Step2Services({ data, onChange, onNext, onBack }: Step2P
           <span className="text-[10px] text-muted-text font-mono">[INQUIRY RULES]</span>
         </div>
         <p className="text-xs text-muted-text">
-          Any special questions we should ask or details you need from customers before booking?
+          Any specific questions I should have your booking form ask, or details you need before giving a quote?
         </p>
         <textarea
           rows={2}

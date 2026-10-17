@@ -92,19 +92,19 @@ export default function GetStartedPage() {
     {
       step: "02",
       title: "Complete the 5-Minute Intake Form",
-      desc: "Right after payment, submit your onboarding details at /onboarding. Give us your business name, trade, core services, pricing, logo, and photos of your work.",
+      desc: "Right after payment, send me your details at /onboarding—your business name, trade, core services, pricing, logo, and photos of your work.",
       tag: "7-Day Deadline",
     },
     {
       step: "03",
       title: "Setup & Build Begins",
-      desc: "Once we receive your completed intake form and all required materials, our team gets to work. Your two-week setup timeline officially starts.",
+      desc: "Once I have your completed intake form and required materials, I get straight to work. Your two-week setup timeline officially starts.",
       tag: "2-Week Build",
     },
     {
       step: "04",
       title: "Phone Test, Review & Launch",
-      desc: "We send a live test inquiry straight to your phone so you see how leads arrive in real time. After a quick final review together, your system goes live.",
+      desc: "I send a live test inquiry straight to your phone so you see exactly how leads arrive in real time. After a quick final review together, your system goes live.",
       tag: "Live on Your Phone",
     },
   ];
@@ -120,7 +120,7 @@ export default function GetStartedPage() {
     },
     {
       title: "Brand Assets & Photos",
-      desc: "Your business logo (high-res or vector) and authentic photos of your work, trucks, or crew. If you do not have photos, we provide clean industry-specific imagery.",
+      desc: "Your business logo and real photos of your work, trucks, or crew. If you don't have good photos yet, I'll supply clean, industry-specific imagery for your trade.",
     },
     {
       title: "Domain & Account Access",
@@ -128,7 +128,7 @@ export default function GetStartedPage() {
     },
     {
       title: "Timely Approvals",
-      desc: "A prompt response when we send your preview link and live phone test during the final review phase.",
+      desc: "A quick reply when I send your preview link and run the live phone test with you before launch.",
     },
     {
       title: "A Dedicated Inquiry Handler",
@@ -155,12 +155,12 @@ export default function GetStartedPage() {
     {
       icon: XCircle,
       title: "No Exaggerated Guarantees",
-      desc: "We never guarantee specific search rankings, lead counts, revenue numbers, or booked jobs. We build high-quality systems that make winning jobs much easier.",
+      desc: "I never make fake promises about search rankings, lead counts, or revenue. What I build is a high-converting system that makes winning jobs significantly easier.",
     },
     {
       icon: ShieldAlert,
       title: "No Paid Advertising Management",
-      desc: "Our previous Scale tier has been discontinued. We focus entirely on high-converting websites, local SEO, review collection, and instant follow-up automation. We do not run paid ads.",
+      desc: "My previous Scale tier has been discontinued. I focus entirely on high-converting websites, local SEO, review collection, and instant follow-up automations. I do not run paid ads.",
     },
   ];
 
@@ -244,7 +244,7 @@ export default function GetStartedPage() {
                   CURRENT OFFER UPDATE:
                 </span>
                 <span>
-                  Book Moar now operates with two streamlined tiers: <strong>Starter</strong> and <strong>Grow</strong>. Our previous Scale plan has been discontinued, and we do not offer paid advertising management. Grow is our fullest current plan.
+                  I offer two focused tiers: <strong>Starter</strong> and <strong>Grow</strong>. My previous Scale plan has been discontinued, and I don&apos;t manage paid ads. Grow is currently my most complete plan.
                 </span>
               </div>
             </div>
@@ -359,7 +359,7 @@ export default function GetStartedPage() {
                   </div>
 
                   <p className="text-sm text-muted-text leading-relaxed mb-6">
-                    Our most comprehensive system for active operators who want automated missed-call recovery, steady Google review generation, and local search visibility.
+                    My most complete system for active operators who want automated missed-call text back, steady Google review collection, and strong local search visibility.
                   </p>
 
                   {/* Pricing Box */}
@@ -440,7 +440,7 @@ export default function GetStartedPage() {
                 HOW SETUP WORKS
               </h2>
               <p className="text-sm sm:text-base text-muted-text mt-3 max-w-xl mx-auto">
-                No endless meetings or confusing agency jargon. We follow a simple, four-step path to get your system built and live.
+                No endless meetings or agency jargon. Here’s the straightforward four-step process I follow to get your system built and live.
               </p>
             </div>
 
@@ -504,7 +504,7 @@ export default function GetStartedPage() {
               {/* Exact Required Phrasing */}
               <div className="p-6 rounded-xl bg-[#050505] border border-white/10 mb-6">
                 <blockquote className="text-base sm:text-lg text-white-text font-medium leading-relaxed italic border-l-4 border-primary-red pl-4">
-                  “Complete your five-minute intake form within seven days of payment. If we haven’t received it by then, we’ll cancel onboarding and refund your payment. Your two-week setup timeline begins once we receive your completed intake form and all required materials.”
+                  “Send me your five-minute intake form within seven days of payment. If I haven’t received it by then, I’ll cancel onboarding and refund your payment. Your two-week setup timeline begins once I receive your completed intake form and all required materials.”
                 </blockquote>
               </div>
 
@@ -514,7 +514,7 @@ export default function GetStartedPage() {
                     Payment Alone Does Not Start Setup
                   </strong>
                   <p>
-                    Paying the initial setup fee secures your spot, but our team cannot write copy, wire up lead routing, or build custom quote forms without your actual business details.
+                    Paying the setup fee locks in your spot, but I can&apos;t write your copy, wire up phone routing, or build your quote forms without your actual business details.
                   </p>
                 </div>
 
@@ -523,7 +523,7 @@ export default function GetStartedPage() {
                     The 2-Week Clock Starts on Submission
                   </strong>
                   <p>
-                    Once your intake form is submitted and we have your logo, service list, and access permissions, our two-week production clock begins immediately.
+                    Once you submit your intake form with your logo, services, and domain access, my two-week production clock begins immediately.
                   </p>
                 </div>
               </div>
@@ -531,7 +531,7 @@ export default function GetStartedPage() {
           </section>
 
           {/* ========================================================================= */}
-          {/* SECTION 4: WHAT WE NEED FROM YOU */}
+          {/* SECTION 4: WHAT I NEED FROM YOU */}
           {/* ========================================================================= */}
           <section id="what-we-need" className="mb-24 sm:mb-32">
             <div className="text-center max-w-3xl mx-auto mb-14">
@@ -539,10 +539,10 @@ export default function GetStartedPage() {
                 SECTION 04 • CLIENT REQUIREMENTS
               </span>
               <h2 className="font-display text-4xl sm:text-5xl font-normal uppercase tracking-tight">
-                WHAT WE NEED FROM YOU
+                WHAT I NEED FROM YOU
               </h2>
               <p className="text-sm sm:text-base text-muted-text mt-3 max-w-xl mx-auto">
-                We handle all the heavy lifting, development, and technical configuration. Here is the concise checklist of items we need from your side:
+                I handle all the development, copywriting, and technical setup. Here’s the checklist of what I need from you to get started:
               </p>
             </div>
 
@@ -586,7 +586,7 @@ export default function GetStartedPage() {
 
               <div className="space-y-4 text-sm sm:text-base text-muted-text leading-relaxed">
                 <p>
-                  <strong className="text-white-text">Book Moar is built for owners who are ready to follow through.</strong> Our technology dispatches lead alerts to your phone instantly and can even text callers back in 30 seconds when you miss a call.
+                  <strong className="text-white-text">Book Moar is built for owners who are ready to follow through.</strong> The system texts lead alerts to your phone instantly and can reply to missed callers in 30 seconds.
                 </p>
                 <p>
                   However, an automated text does not close a deal or provide an estimate. When a potential customer responds with questions, needs a diagnostic visit, or asks for pricing, the owner or a designated team member must take over promptly.
@@ -595,7 +595,7 @@ export default function GetStartedPage() {
                   An automated reply does not replace handling the customer. If responding quickly to new business inquiries is not a priority for your operation right now, this may not be the right fit.
                 </div>
                 <p className="text-xs text-muted-text">
-                  Fast response time is the single highest leverage factor in winning local jobs before your competitor does. We provide the tools, but your follow-through seals the deal.
+                  Fast response time is the single highest leverage factor in winning local jobs before your competitor does. I provide the tools, but your follow-through seals the deal.
                 </p>
               </div>
             </div>
@@ -613,7 +613,7 @@ export default function GetStartedPage() {
                 WHAT TO EXPECT
               </h2>
               <p className="text-sm sm:text-base text-muted-text mt-3 max-w-xl mx-auto">
-                No smoke and mirrors, no fake guarantees. Here is an honest breakdown of what our systems accomplish and what they do not:
+                No smoke and mirrors, no fake guarantees. Here is an honest breakdown of what my systems accomplish and what they do not:
               </p>
             </div>
 
@@ -658,7 +658,7 @@ export default function GetStartedPage() {
               </h2>
 
               <p className="text-sm sm:text-base text-muted-text max-w-xl mx-auto leading-relaxed mb-10">
-                Choose your plan to start. After checkout, you will immediately receive access to our 5-minute intake form at <code className="text-primary-red font-mono">/onboarding</code> to submit your trade details.
+                Choose your plan to start. After checkout, you will jump straight into my 5-minute intake form at <code className="text-primary-red font-mono">/onboarding</code> so I can get your trade details and start building.
               </p>
 
               {/* CTA Buttons */}
@@ -683,7 +683,7 @@ export default function GetStartedPage() {
               {/* Questions / Direct Contact Block */}
               <div className="pt-8 border-t border-white/10 max-w-2xl mx-auto">
                 <p className="text-xs font-bold text-muted-text uppercase tracking-widest mb-4">
-                  HAVE QUESTIONS BEFORE GETTING STARTED? TALK TO US DIRECTLY:
+                  HAVE QUESTIONS BEFORE GETTING STARTED? TALK TO ME DIRECTLY:
                 </p>
 
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">

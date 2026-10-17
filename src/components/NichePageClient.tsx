@@ -112,7 +112,7 @@ export default function NichePageClient({ nicheData }: NichePageClientProps) {
                 Founding Client Pricing
               </h4>
               <p className="text-xs text-muted-text leading-relaxed mb-4">
-                We're looking for our first five businesses to partner with. If you're one of the first five clients, you'll lock in our introductory pricing forever.
+                I'm looking for my first five businesses to partner with. If you're one of the first five, you lock in introductory pricing forever.
               </p>
               <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-primary-red/35 bg-primary-red/10 text-primary-red text-[10px] font-bold uppercase tracking-wider">
                 Only 5 Founding Client Spots Available

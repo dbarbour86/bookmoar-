@@ -38,7 +38,7 @@ export default function Header() {
           </span>
           <span className="text-muted-text hidden sm:inline">•</span>
           <span className="text-white-text/90 font-medium">
-            Introductory pricing is available for the first <strong className="text-primary-red">5 clients only</strong>. Once all 5 spots are filled, pricing will increase. Founding clients keep their pricing forever.
+            I&apos;m keeping introductory pricing open for the first <strong className="text-primary-red">5 clients only</strong>. Lock in your spot now and you keep this rate for life.
           </span>
         </div>
       </div>

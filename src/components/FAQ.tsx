@@ -15,19 +15,19 @@ export default function FAQ() {
   const faqs: FAQItem[] = [
     {
       question: "Why is the pricing so low?",
-      answer: "Because we're intentionally keeping our first five clients at a discounted rate while we continue building our portfolio and collecting case studies. Once those five spots are filled, all new clients will pay our standard pricing. Founding clients keep their introductory rate for as long as they remain active.",
+      answer: "I'm keeping introductory pricing locked for my first five clients while I build out my initial case studies. Once those five spots are filled, future clients will pay my standard rates. If you lock in one of the five spots now, you keep your rate for life.",
     },
     {
       question: "Is there a long-term contract?",
-      answer: "No. All of our plans are month-to-month. You can cancel at any time with no fees or penalties. We want to earn your business every single month.",
+      answer: "No. All plans are month-to-month. You can cancel anytime without fees or penalties. I want to earn your business every single month.",
     },
     {
       question: "How fast is the setup process?",
-      answer: "We complete the initial design and system configuration within 2-3 business days. However, because carriers require mandatory A2P 10DLC registration for automated SMS messaging, full verification and launch takes approximately 10 business days. We handle all carrier registration for you to ensure your business number is fully compliant.",
+      answer: "Your two-week setup timeline starts as soon as I receive your completed intake form and materials. I build the site and configure your system right away, while managing mandatory phone carrier verification so your automated texts deliver reliably. If I miss that two-week deadline, your second month is free.",
     },
     {
       question: "Do you support my specific service business?",
-      answer: "Yes! We build tailored systems for mobile detailers, roofing contractors, landscapers, moving companies, paintless dent repair techs, and other appointment-based local service businesses.",
+      answer: "Yes. I build systems specifically for mobile detailers, roofing contractors, landscapers, movers, dent repair techs, and other appointment-based local service pros.",
     },
   ];
 

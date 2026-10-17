@@ -21,7 +21,7 @@ export default function Process() {
       tabTitle: "Discover",
       title: "DEEP-DIVE STRATEGY & AUDIT",
       description:
-        "We learn your business, services, audience, competitors, goals, and current lead flow before we design anything.",
+        "I review your trade, core services, local competitors, and current lead flow from your intake form before I build anything.",
       items: [
         "Competitor and market review",
         "Current website audit",
@@ -34,7 +34,7 @@ export default function Process() {
       tabTitle: "Design",
       title: "DESIGN THE CONVERSION SYSTEM",
       description:
-        "We turn the strategy into a premium website and frictionless customer journey.",
+        "I turn your services and photos into a clean, mobile-first website designed to turn visitors into quote requests.",
       items: [
         "Custom responsive design",
         "Lead and booking forms",
@@ -47,7 +47,7 @@ export default function Process() {
       tabTitle: "Launch",
       title: "BUILD, TEST & LAUNCH",
       description:
-        "We develop the site, connect the necessary tools, test every path, and launch it properly.",
+        "I build your site, configure your SMS and review automations, test everything with a live phone ping to you, and launch it.",
       items: [
         "Fast production build",
         "Mobile and browser testing",
@@ -60,7 +60,7 @@ export default function Process() {
       tabTitle: "Grow",
       title: "IMPROVE & GROW",
       description:
-        "We monitor what is working and improve the system as your business grows.",
+        "I keep your system running smoothly, push review requests to happy customers, and handle updates as your business grows.",
       items: [
         "Review automation",
         "Local SEO improvements",

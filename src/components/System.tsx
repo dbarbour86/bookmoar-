@@ -49,7 +49,7 @@ export default function System() {
           </div>
           <div className="lg:col-span-5">
             <p className="text-base text-muted-text leading-relaxed">
-              Anyone can launch a template. We build a connected booking system designed to attract attention, build trust, follow up with leads, and turn interest into revenue.
+              Anyone can throw up a template. I set you up with a connected booking system that grabs local attention, builds immediate trust, follows up with leads, and turns interest into actual revenue.
             </p>
           </div>
         </div>
