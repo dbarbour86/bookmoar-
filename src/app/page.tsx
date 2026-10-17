@@ -22,7 +22,7 @@ export default function Home() {
             "url": "https://www.bookmoar.com",
             "logo": "https://www.bookmoar.com/icon",
             "image": "https://www.bookmoar.com/icon",
-            "description": "Premium website systems, Google Review request automation, local SEO, and missed-call text back setups built to help local service businesses generate more bookings on autopilot.",
+            "description": "High-converting website systems, automated Google review collection, local search visibility, and instant text and voice inquiry response built for local service businesses.",
             "telephone": "+1-919-351-9505",
             "email": "hello@bookmoar.com",
             "address": {

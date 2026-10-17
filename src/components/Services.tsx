@@ -30,13 +30,13 @@ export default function Services() {
     },
     {
       title: "AUTOMATIONS",
-      description: "Follow up instantly without living on your phone.",
+      description: "Follow up instantly by text and phone without living on your screen.",
       icon: Sparkles,
       highlight: false,
       bullets: [
-        "Missed-call text back",
-        "Review request campaigns",
-        "Lead follow-up sequences",
+        "Instant text & voice follow-up",
+        "Automated Google review requests",
+        "Appointment reminders & rebooking",
       ],
     },
   ];

@@ -22,15 +22,15 @@ import {
 export const metadata: Metadata = {
   title: "Get Started | Book Moar — Good Work Deserves to Get Booked",
   description:
-    "Affordable websites and fast follow-up for local service businesses. Review our Starter and Grow plans, onboarding process, requirements, and timelines.",
+    "Affordable websites and fast follow-up for local service businesses. Review our MOAR LEADS and MOAR LEADS: VOICE plans, onboarding process, requirements, and timelines.",
 };
 
 export default function GetStartedPage() {
-  const starterDeliverables = [
+  const moarLeadsDeliverables = [
     {
-      title: "Conversion-Focused Website",
-      desc: "Fast, mobile-optimized site built specifically for your trade with clear calls to action so visitors immediately trust your business.",
-      practical: "Turns visitors into calls and quote requests instead of bouncing to competitors.",
+      title: "Conversion-Focused Trade Website",
+      desc: "Fast, mobile-optimized site built specifically for your trade with clear calls to action, SSL security, and custom domain connection.",
+      practical: "Gives prospective customers immediate confidence so they choose you over competitors.",
     },
     {
       title: "Trade-Specific Lead & Quote Forms",
@@ -38,47 +38,62 @@ export default function GetStartedPage() {
       practical: "Delivers organized job details straight into your inbox so you can quote quickly.",
     },
     {
-      title: "Real-Time Lead Alerts",
+      title: "Instant Lead Alerts to Your Phone",
       desc: "Immediate SMS and email notifications dispatched to your phone the second an inquiry is submitted.",
       practical: "Ensures you never leave a fresh lead sitting unanswered while working in the field.",
     },
     {
-      title: "Domain Setup & Fast Hosting",
-      desc: "Connection to your custom domain or clean Book Moar address, complete with SSL encryption and reliable cloud hosting.",
-      practical: "Keeps your site secure, professional, and accessible 24/7 with zero technical hassle.",
+      title: "AI Text Follow-Up Assistant",
+      desc: "Automatically sends a friendly, fast text response to incoming web inquiries so prospective customers get an immediate reply.",
+      practical: "Keeps customers from calling the next business on Google while your hands are full.",
+    },
+    {
+      title: "Smart Text Follow-Up Workflows",
+      desc: "Automated text follow-ups that gently check in with unanswered inquiries and pending quotes.",
+      practical: "Prevents jobs from slipping through the cracks without you having to remember manual follow-ups.",
+    },
+    {
+      title: "Organized Inquiry & Calendar Pipeline",
+      desc: "A single organized place to view all customer inquiries, conversation history, and requested appointment times.",
+      practical: "Cuts out messy notes and helps you keep track of every active conversation.",
+    },
+    {
+      title: "Automated Google Review Requests",
+      desc: "Automated SMS review requests sent to happy customers with a direct link to your Google Business Profile after completed jobs.",
+      practical: "Consistently collects 5-star Google reviews to build local reputation and search credibility.",
     },
   ];
 
-  const growDeliverables = [
+  const moarLeadsVoiceDeliverables = [
     {
-      title: "Everything in the Starter Plan",
-      desc: "Complete high-converting website, custom quote forms, real-time alerts, and secure cloud hosting.",
-      practical: "The solid online foundation every local service business needs.",
+      title: "Everything in MOAR LEADS",
+      desc: "Complete conversion website, quote forms, instant text follow-up, conversation tracking, and automated Google review requests.",
+      practical: "Your full web and text foundation included from day one.",
     },
     {
-      title: "Missed-Call Text-Back Automation",
-      desc: "Automatically sends a friendly, personalized text within 30 seconds when you miss a customer call.",
-      practical: "Rescues lost callers while you are on a roof, under a vehicle, or on a job site.",
+      title: "AI Voice Receptionist & Inquiry Capture",
+      desc: "Answers incoming calls when you can't pick up, answers basic trade questions about your hours and services, and gathers caller details.",
+      practical: "Captures phone inquiries while you are on a roof, under a vehicle, driving, or after hours.",
     },
     {
-      title: "Google Review Request Campaigns",
-      desc: "Automated SMS and email review prompts sent to completed customers with a direct link to your Google profile.",
-      practical: "Consistently collects 5-star reviews to boost your local reputation and search placement.",
+      title: "Voice Inquiry Notification & Message Routing",
+      desc: "Immediately sends you a clear transcript and summary of what the caller needs so you can call back fully informed.",
+      practical: "Saves time and eliminates messy voicemails with actionable caller details sent straight to your phone.",
     },
     {
-      title: "Google Business Profile & Local SEO",
-      desc: "Setup and optimization of your Google Maps listing, trade categories, service areas, and local citations.",
-      practical: "Helps homeowners and local customers find your business when searching nearby.",
+      title: "Automated Appointment Reminders",
+      desc: "Sends timely automated reminders to customers before scheduled appointments and arrival windows.",
+      practical: "Drastically cuts down no-shows and last-minute cancellations without extra calls.",
     },
     {
-      title: "Online Appointment & Arrival Window Booking",
-      desc: "Interactive scheduling system allowing customers to select arrival windows or diagnostic visits.",
-      practical: "Cuts down endless back-and-forth phone tag by letting customers pick a convenient slot.",
+      title: "Customer Rebooking Prompts",
+      desc: "Automatically follows up with past clients when it’s time for regular maintenance or seasonal service.",
+      practical: "Keeps your schedule full with recurring repeat business on autopilot.",
     },
     {
-      title: "A2P 10DLC Carrier SMS Compliance",
-      desc: "Official business carrier registration so your automated SMS notifications are delivered reliably without carrier blocks.",
-      practical: "Protects your phone number and guarantees compliant, high-deliverability messaging.",
+      title: "Dormant-Customer Reactivation",
+      desc: "Re-engages past customers you haven't heard from in months with a friendly check-in or seasonal offer.",
+      practical: "Brings back old customers who already know and trust your work without paying for new marketing.",
     },
   ];
 
@@ -86,7 +101,7 @@ export default function GetStartedPage() {
     {
       step: "01",
       title: "Choose Your Plan & Pay",
-      desc: "Select the Starter or Grow plan, complete secure Stripe checkout, and pay the one-time $199 setup fee. There are no contracts, and your rate is locked in.",
+      desc: "Select MOAR LEADS or MOAR LEADS: VOICE, complete secure Stripe checkout, and pay the one-time $199 setup fee. There are no contracts, and your rate is locked in.",
       tag: "Immediate Checkout",
     },
     {
@@ -160,7 +175,7 @@ export default function GetStartedPage() {
     {
       icon: ShieldAlert,
       title: "No Paid Advertising Management",
-      desc: "My previous Scale tier has been discontinued. I focus entirely on high-converting websites, local SEO, review collection, and instant follow-up automations. I do not run paid ads.",
+      desc: "I focus entirely on high-converting websites, local search visibility, review collection, and automated text and voice follow-up. I do not run or manage paid ads.",
     },
   ];
 
@@ -221,7 +236,7 @@ export default function GetStartedPage() {
           </div>
 
           {/* ========================================================================= */}
-          {/* SECTION 1: WHAT YOU GET (STARTER VS GROW) */}
+          {/* SECTION 1: WHAT YOU GET (MOAR LEADS VS MOAR LEADS: VOICE) */}
           {/* ========================================================================= */}
           <section id="plans" className="mb-24 sm:mb-32">
             <div className="text-center max-w-3xl mx-auto mb-14">
@@ -232,45 +247,33 @@ export default function GetStartedPage() {
                 CHOOSE THE PLAN THAT FITS YOUR OPERATION
               </h2>
               <p className="text-sm sm:text-base text-muted-text mt-3 max-w-xl mx-auto">
-                Book Moar offers two focused plans. Every feature is connected directly to a practical business outcome.
+                Book Moar offers two focused plans: MOAR LEADS and MOAR LEADS: VOICE. Every feature is connected directly to a practical business outcome.
               </p>
             </div>
 
-            {/* Scale Discontinued Notice */}
-            <div className="max-w-4xl mx-auto mb-10 p-4 rounded-xl bg-[#0B0B0D] border border-white/10 flex items-start gap-3.5 text-xs text-muted-text">
-              <AlertCircle className="w-4 h-4 text-primary-red shrink-0 mt-0.5" />
-              <div>
-                <span className="font-bold text-white-text uppercase tracking-wider block mb-0.5">
-                  CURRENT OFFER UPDATE:
-                </span>
-                <span>
-                  I offer two focused tiers: <strong>Starter</strong> and <strong>Grow</strong>. My previous Scale plan has been discontinued, and I don&apos;t manage paid ads. Grow is currently my most complete plan.
-                </span>
-              </div>
-            </div>
 
             {/* Plan Cards Grid */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-5xl mx-auto items-stretch">
               
-              {/* STARTER PLAN */}
+              {/* MOAR LEADS PLAN */}
               <div className="rounded-2xl bg-card-bg border border-border-color hover:border-white/20 p-8 sm:p-10 flex flex-col justify-between transition-all duration-300 relative shadow-xl">
                 <div>
                   <div className="flex justify-between items-start mb-4">
                     <div>
                       <span className="text-[10px] font-bold text-muted-text uppercase tracking-widest block mb-1">
-                        ESSENTIAL FOUNDATION
+                        CORE TEXT &amp; WEB SYSTEM
                       </span>
                       <h3 className="font-display text-3xl sm:text-4xl font-normal text-white-text uppercase tracking-wide">
-                        STARTER
+                        MOAR LEADS
                       </h3>
                     </div>
                     <span className="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-semibold text-muted-text uppercase">
-                      Core Web System
+                      Text &amp; Web
                     </span>
                   </div>
 
                   <p className="text-sm text-muted-text leading-relaxed mb-6">
-                    Designed for solo contractors and service pros who need a modern, professional web presence to establish credibility and capture inbound job requests.
+                    Designed for solo contractors and service pros who want a modern website, instant text replies for incoming inquiries, and automated Google reviews.
                   </p>
 
                   {/* Pricing Box */}
@@ -303,7 +306,7 @@ export default function GetStartedPage() {
                       What You Get &amp; Why It Matters:
                     </p>
                     <ul className="space-y-4">
-                      {starterDeliverables.map((item, idx) => (
+                      {moarLeadsDeliverables.map((item, idx) => (
                         <li key={idx} className="flex items-start gap-3 text-sm">
                           <div className="w-5 h-5 rounded-full bg-primary-red/10 border border-primary-red/30 flex items-center justify-center text-primary-red shrink-0 mt-0.5">
                             <Check className="w-3 h-3" />
@@ -330,7 +333,7 @@ export default function GetStartedPage() {
                     href="#lock-pricing"
                     className="w-full py-4 rounded-xl bg-[#101014] hover:bg-[#181820] border border-white/15 hover:border-primary-red text-white-text font-bold uppercase tracking-wider text-sm flex items-center justify-center gap-2 transition-all duration-300"
                   >
-                    Select Starter Plan
+                    Select MOAR LEADS Plan
                     <ArrowRight className="w-4 h-4" />
                   </a>
                   <span className="text-[10px] text-muted-text uppercase font-semibold text-center block mt-2">
@@ -339,27 +342,27 @@ export default function GetStartedPage() {
                 </div>
               </div>
 
-              {/* GROW PLAN (FULLEST PLAN) */}
+              {/* MOAR LEADS: VOICE PLAN */}
               <div className="rounded-2xl bg-card-bg border-2 border-primary-red/40 hover:border-primary-red p-8 sm:p-10 flex flex-col justify-between transition-all duration-300 relative shadow-[0_0_35px_rgba(255,37,56,0.15)]">
                 {/* Popular Badge */}
                 <div className="absolute -top-3.5 right-8 bg-primary-red text-white-text text-[10px] font-bold uppercase tracking-widest px-3.5 py-1 rounded-full shadow-lg">
-                  Fullest Current Plan
+                  Combined Text &amp; Voice
                 </div>
 
                 <div>
                   <div className="flex justify-between items-start mb-4">
                     <div>
                       <span className="text-[10px] font-bold text-primary-red uppercase tracking-widest block mb-1">
-                        COMPLETE AUTOMATION &amp; SEO
+                        TEXT + VOICE AUTOMATION
                       </span>
                       <h3 className="font-display text-3xl sm:text-4xl font-normal text-white-text uppercase tracking-wide">
-                        GROW
+                        MOAR LEADS: VOICE
                       </h3>
                     </div>
                   </div>
 
                   <p className="text-sm text-muted-text leading-relaxed mb-6">
-                    My most complete system for active operators who want automated missed-call text back, steady Google review collection, and strong local search visibility.
+                    My combined text-and-voice system. Includes everything in MOAR LEADS, plus an AI voice receptionist to answer calls when you can&apos;t pick up, automated appointment reminders, rebooking, and customer reactivation.
                   </p>
 
                   {/* Pricing Box */}
@@ -381,15 +384,18 @@ export default function GetStartedPage() {
                       <span className="text-muted-text">One-Time Setup Fee (Due Today)</span>
                       <span className="font-bold text-white-text">$199 setup</span>
                     </div>
+                    <p className="text-[11px] text-muted-text/80 mt-2 border-t border-white/5 pt-2 italic">
+                      Month-to-month, cancel anytime. No long-term contracts.
+                    </p>
                   </div>
 
                   {/* Inclusions */}
                   <div className="space-y-4 mb-8">
                     <p className="text-xs font-bold text-white-text uppercase tracking-widest">
-                      Everything in Starter, Plus:
+                      Everything in MOAR LEADS, Plus:
                     </p>
                     <ul className="space-y-4">
-                      {growDeliverables.map((item, idx) => (
+                      {moarLeadsVoiceDeliverables.map((item, idx) => (
                         <li key={idx} className="flex items-start gap-3 text-sm">
                           <div className="w-5 h-5 rounded-full bg-primary-red/20 border border-primary-red/40 flex items-center justify-center text-primary-red shrink-0 mt-0.5">
                             <Check className="w-3 h-3 stroke-[2.5]" />
@@ -416,7 +422,7 @@ export default function GetStartedPage() {
                     href="#lock-pricing"
                     className="w-full py-4 rounded-xl bg-primary-red hover:bg-[#e01c2e] text-white-text font-bold uppercase tracking-wider text-sm flex items-center justify-center gap-2 transition-all duration-300 shadow-[0_0_20px_rgba(255,37,56,0.35)]"
                   >
-                    Select Grow Plan
+                    Select MOAR LEADS: VOICE Plan
                     <ArrowRight className="w-4 h-4" />
                   </a>
                   <span className="text-[10px] text-muted-text uppercase font-semibold text-center block mt-2">

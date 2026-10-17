@@ -74,7 +74,7 @@ export default function Footer() {
                 "Website Design",
                 "Local SEO & Maps",
                 "Review Automation",
-                "Lead Follow-Up Automations",
+                "Text & Voice Automations",
               ].map((service, idx) => (
                 <li key={idx}>
                   <a

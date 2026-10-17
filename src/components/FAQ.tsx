@@ -26,6 +26,10 @@ export default function FAQ() {
       answer: "Your two-week setup timeline starts as soon as I receive your completed intake form and materials. I build the site and configure your system right away, while managing mandatory phone carrier verification so your automated texts deliver reliably. If I miss that two-week deadline, your second month is free.",
     },
     {
+      question: "What is the difference between MOAR LEADS and MOAR LEADS: VOICE?",
+      answer: "MOAR LEADS includes your custom website, lead capture forms, instant text follow-up, and automated Google review requests. MOAR LEADS: VOICE includes everything in MOAR LEADS, plus an AI voice receptionist to answer customer calls when your hands are full, automated appointment reminders, customer rebooking prompts, and dormant-customer reactivation.",
+    },
+    {
       question: "Do you support my specific service business?",
       answer: "Yes. I build systems specifically for mobile detailers, roofing contractors, landscapers, movers, dent repair techs, and other appointment-based local service pros.",
     },
